@@ -1,0 +1,46 @@
+{
+  "name": "lost-traveller-app",
+  "version": "1.0.0",
+  "description": "A tourism app for travellers",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --mode production",
+    "dev": "webpack serve",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jose-tells/lost-traveller-app.git"
+  },
+  "keywords": [
+    "travel",
+    "react",
+    "lost-traveller"
+  ],
+  "author": "Jose Marquinez <josemarquinez28gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jose-tells/lost-traveller-app/issues"
+  },
+  "homepage": "https://github.com/jose-tells/lost-traveller-app#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "stylus": "^0.55.0",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^3.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.3",
+    "stylus-loader": "^6.2.0",
+    "webpack-dev-server": "^4.4.0"
+  }
+}
