@@ -1,7 +1,6 @@
-// React
 import React from 'react';
 import ReactDOM from 'react-dom';
-// Home component
-import Home from './components/Home';
+// Routes
+import App from './routes/app';
 
-ReactDOM.render(<Home />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

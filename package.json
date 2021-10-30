@@ -24,8 +24,17 @@
   },
   "homepage": "https://github.com/jose-tells/lost-traveller-app#readme",
   "dependencies": {
+    "@babel/eslint-parser": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.26.1",
+    "prettier": "^2.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^5.3.0",
     "stylus": "^0.55.0",
     "webpack": "^5.61.0",
     "webpack-cli": "^4.9.1"
