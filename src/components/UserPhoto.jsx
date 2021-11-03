@@ -1,0 +1,22 @@
+import React from 'react';
+// Classnames
+import classNames from 'classnames';
+
+const UserPhoto = (props) => {
+
+  const { firstPhoto, secondPhoto, thirdPhoto, testProfilePhoto } = props;
+
+  const profileImageStyles = classNames('postInfo__creator--image', {
+    firstPhoto,
+    secondPhoto,
+    thirdPhoto,
+  });
+
+  return (
+    <div className={profileImageStyles}>
+      <img src={testProfilePhoto} alt='Profile' />
+    </div>
+  );
+};
+
+export default UserPhoto;

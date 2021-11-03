@@ -1,0 +1,54 @@
+// Photo-container styles
+.postInfo__container
+  width 100vw
+  height 522px
+  overflow hidden
+
+.postInfo
+  height 508px
+  margin 6px 4px
+  display grid
+  grid-template-columns repeat(16, 1fr)
+  grid-template-rows repeat(16, 1fr)
+  border-radius 35px
+  overflow hidden
+  .postInfo__photo
+    grid-column 1/17
+    grid-row 1/17
+    height 100%
+
+
+.postInfo__title
+  align-self center
+  grid-column 2/14
+  grid-row 12/14
+  color White
+  h1
+    font-size title-size
+    font-weight bold
+  h2
+    font-size mini-text-size
+    font-weight 400
+
+.postInfo__creator
+  grid-column 2/8
+  grid-row 14/16
+  overflow hidden
+  .postInfo__creator--name
+    font-size footer-text-size
+    font-weight 400
+    color White
+
+.postInfo__contributors
+  display flex
+  flex-direction column
+  align-items flex-end
+  grid-column 4/16
+  grid-row 14/16
+  justify-self flex-end
+  color White
+  .postInfo__contributors--profiles
+    display flex
+  .postInfo__contributors--names
+    font-size footer-text-size
+    font-weight 400
