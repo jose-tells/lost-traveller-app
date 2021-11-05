@@ -1,4 +1,6 @@
 import React from 'react';
+// Redux
+import { connect } from 'react-redux';
 //Components
 import BackwardsButton from './BackwardsButton';
 import WeatherInfo from './WeatherInfo';
@@ -42,4 +44,10 @@ const PostInfo = () => {
   );
 };
 
-export default PostInfo;
+const mapStateToProps = (state) => {
+  return {
+    hola: state.hola,
+  };
+};
+
+export default connect(mapStateToProps, null)(PostInfo);
