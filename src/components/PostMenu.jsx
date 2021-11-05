@@ -2,23 +2,32 @@ import React from 'react';
 // Components
 import PostMenuLink from './PostMenuLink';
 
-const PostMenu = () => {
+const PostMenu = (props) => {
+  const { setContribution, setForum, setSection } = props;
+
   return (
     <div className='postMenu__container'>
       <PostMenuLink
-        altText='Verfied User'
-        icon='https://img.icons8.com/ios-filled/48/00998F/instagram-verification-badge.png'
-        menuLink='Verified User'
+        altText='Contribution'
+        icon='https://img.icons8.com/fluency-systems-regular/48/00998F/hand-with-pen.png'
+        menuLink='Contribution'
+        setSection={setSection}
+        setContribution={setContribution}
+        setForum={setForum}
+      />
+      <PostMenuLink
+        altText='Verified'
+        icon='https://img.icons8.com/ios-filled/48/1D9BF0/instagram-verification-badge.png'
+        menuLink='Verified'
+        setSection={setSection}
       />
       <PostMenuLink
         altText='Forum'
         icon='https://img.icons8.com/ios-filled/48/00998F/chat--v1.png'
         menuLink='Forum'
-      />
-      <PostMenuLink
-        altText='Contribution'
-        icon='https://img.icons8.com/fluency-systems-regular/48/00998F/hand-with-pen.png'
-        menuLink='Contribution'
+        setSection={setSection}
+        setContribution={setContribution}
+        setForum={setForum}
       />
     </div>
   );

@@ -1,15 +1,55 @@
+
+keyframe-name = contribution-animation
+keyframe-name2 = forum-animation
+
+@keyframes keyframe-name
+  from
+    width 0px
+  to
+    width 103px
+
+@keyframes keyframe-name2
+  from
+    width 0px
+  to
+    width 53px
+
+
 .commentsSection__container
   width 90%
   display grid
   grid-template-columns repeat(2, 1fr)
   justify-content space-evenly
   margin auto
-  h1:nth-child(1)
-    border-bottom 1px solid Complementary-icon
-    grid-column 1/2
-    justify-self center
-    font-size text-size
-  h1:nth-child(2)
-    grid-column 2/3
-    justify-self center
-    font-size text-size
+
+.commentsSection__item
+  width fit-content
+  justify-self center
+  text-align center
+  font-size text-size
+  font-weight 400
+  color Elegant-black
+
+.commentsSection__item.isContribution
+  color Icon-blue
+
+.commentsSection__item.isContribution::before
+  content ''
+  position absolute
+  width 103px
+  animation-name keyframe-name
+  animation-duration 0.5s
+  transform translateY(20px)
+  border-bottom 1px solid Letter-orange
+
+.commentsSection__item.isForum
+  color Icon-blue
+
+.commentsSection__item.isForum::before
+  content ''
+  position absolute
+  width 53px
+  animation-name keyframe-name2
+  animation-duration 0.5s
+  transform translateY(20px)
+  border-bottom 1px solid Letter-orange

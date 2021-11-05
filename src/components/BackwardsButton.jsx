@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const BackwardsButton = () => {
   return (
-    <div className='postInfo__backwardsButton'>
+    <Link to='/' className='postInfo__backwardsButton'>
       <FontAwesomeIcon className='postInfo__backwardsButton--icon' icon={faArrowLeft} />
-    </div>
+    </Link>
   );
 };
 

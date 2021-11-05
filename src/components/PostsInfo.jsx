@@ -24,7 +24,7 @@ const PostInfo = () => {
             <h2>Average Price: $24</h2>
           </div>
           <div className='postInfo__creator'>
-            <UserPhoto testProfilePhoto={photo1} />
+            <UserPhoto testProfilePhoto={photo1} isVerified />
             <p className='postInfo__creator--name'>Created by Jose</p>
           </div>
           <div className='postInfo__contributors'>

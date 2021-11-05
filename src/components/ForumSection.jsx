@@ -4,12 +4,14 @@ import UserInput from './UserInput';
 
 const ForumSection = () => {
   return (
-    <UserInput
-      minLength='1'
-      maxLength='50'
-      placeholder='Your comment'
-      isForum
-    />
+    <div id='forum'>
+      <UserInput
+        minLength='1'
+        maxLength='50'
+        placeholder='Your comment'
+        isForum
+      />
+    </div>
   );
 };
 
