@@ -4,19 +4,21 @@ import classNames from 'classnames';
 
 const UserPhoto = (props) => {
 
-  const { firstPhoto, secondPhoto, thirdPhoto, testProfilePhoto, isComment, isProfile } = props;
+  const { firstPhoto, secondPhoto, thirdPhoto, testProfilePhoto, isComment, isProfile, isVerified } = props;
 
-  const profileImageStyles = classNames('postInfo__creator--image', {
+  const profileImageStyles = classNames('postInfo__creator--photoContainer', {
     firstPhoto,
     secondPhoto,
     thirdPhoto,
     isComment,
     isProfile,
+    isVerified,
   });
 
   return (
     <div className={profileImageStyles}>
-      <img src={testProfilePhoto} alt='Profile' />
+      <img className='postInfo__creator--photo' src={testProfilePhoto} alt='Profile' />
+      {isVerified && <img className='postInfo__creator--verified' src='https://img.icons8.com/ios-filled/48/1D9BF0/instagram-verification-badge.png' alt='Verified' />}
     </div>
   );
 };

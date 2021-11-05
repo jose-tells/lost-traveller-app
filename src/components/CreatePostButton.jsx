@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom';
 
 const CreatePostButton = () => {
   return (
-    <div className='createPostButton__container'>
+    <Link to='/upload' className='createPostButton__container'>
       <button className='createPostButton__button' type='button'>
-        <Link to='/upload'>
-          New Post
-        </Link>
+        New Post
       </button>
-    </div>
+    </Link>
   );
 };
 

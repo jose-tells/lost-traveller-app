@@ -1,4 +1,4 @@
-.postInfo__creator--image
+.postInfo__creator--photoContainer
   display flex
   justify-content center
   width 43px
@@ -6,31 +6,36 @@
   border-radius 43px
   overflow hidden
   z-index 0
-  img
+  .postInfo__creator--photo
     height 100%
 
-.postInfo__creator--image.firstPhoto
+.postInfo__creator--verified
+  width 15px
+  transform translateX(20px)
+  position absolute
+
+.postInfo__creator--photoContainer.firstPhoto
   transform translateX(75px)
   z-index 30
   img
     height 150%
 
-.postInfo__creator--image.secondPhoto
+.postInfo__creator--photoContainer.secondPhoto
   transform translateX(50px)
   z-index 20
   img
     height 150%
 
-.postInfo__creator--image.thirdPhoto
+.postInfo__creator--photoContainer.thirdPhoto
   transform translateX(25px)
   z-index 10
   img
     height 150%
 
-.postInfo__creator--image.isProfile
+.postInfo__creator--photoContainer.isProfile
   width 82px
   height 82px
   border-radius 82px
 
-.postInfo__creator--image.isComment
+.postInfo__creator--photoContainer.isComment
   align-self flex-start

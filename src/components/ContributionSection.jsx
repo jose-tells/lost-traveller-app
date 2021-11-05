@@ -4,11 +4,13 @@ import UserInput from './UserInput';
 
 const ContributionSection = () => {
   return (
-    <UserInput
-      minLength='20'
-      maxLength='200'
-      placeholder='Your contribution'
-    />
+    <div id='contribution'>
+      <UserInput
+        minLength='20'
+        maxLength='200'
+        placeholder='Your contribution'
+      />
+    </div>
   );
 };
 
