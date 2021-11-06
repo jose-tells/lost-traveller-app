@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+//custom-hooks
+import useDisplay from '../Hooks/useDisplay';
 // Components
 import LocationPresentationHome from '../components/LocationPresentationHome';
 import Footer from '../components/Footer';
@@ -10,20 +12,15 @@ import SlideMenuBar from '../components/SlideMenuBar';
 import '../assets/styles/Home.styl';
 
 const Home = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleDisplayMenu = () => {
-    setOpen(!open);
-    console.log(open);
-  };
+  const { open, handle } = useDisplay();
   return (
     <>
       <div className='index_presentation-container'>
-        <MenuNav open={open} handleDisplayMenu={handleDisplayMenu} />
+        <MenuNav open={open} handleDisplayMenu={handle} />
         <div>
-          <SlideMenuBar open={open} handleDisplayMenu={handleDisplayMenu} />
+          <SlideMenuBar open={open} handleDisplayMenu={handle} />
         </div>
-        <HomeTemplate open={open} handleDisplayMenu={handleDisplayMenu} />
+        <HomeTemplate open={open} handleDisplayMenu={handle} />
         <div className='button-container'>
           <Link to='/signUp' className='singUp-btn'>Sign In</Link>
         </div>

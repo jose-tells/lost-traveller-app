@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//custom-hooks
+import useDisplay from '../Hooks/useDisplay';
 //componets
 import HomeTemplate from '../components/HomeTemplate';
 import MenuNav from '../components/MenuNav';
@@ -8,11 +10,12 @@ import '../assets/styles/SignIn.styl';
 import SlideMenuBar from '../components/SlideMenuBar';
 
 function SignIn() {
+  const { open, handle } = useDisplay();
   return (
     <div className='sign-in-container'>
-      <MenuNav />
+      <MenuNav open={open} handleDisplayMenu={handle} />
       <div>
-        <SlideMenuBar />
+        <SlideMenuBar open={open} handleDisplayMenu={handle} />
       </div>
       <div className='inputsSignIn-container'>
         <input type='text' className='inputs-text' />
