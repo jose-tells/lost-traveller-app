@@ -1,0 +1,43 @@
+.userProfileHeader__container
+  display flex
+  flex-direction column
+  align-items center
+  width 100vw
+  height 514px
+  overflow hidden
+
+.userProfileHeader__photoContainer
+  display flex
+  justify-content center
+  align-items center
+  width 100%
+  height 416px
+  overflow hidden
+  clip-path: polygon(100% 0, 100% 60%, 0 100%, 0 0);
+  // The vectors on the polygon works like a cartesian plane, each side is a vector (a vertex of the polygon)(x y)(up, right, down, left)
+  .userProfileHeader__photo
+    height 100%
+
+.userProfileHeader__info
+  display flex
+  flex-direction column
+  align-items center
+  margin-top -50px
+  color Elegant-black
+  .userProfileHeader__info--name
+    display flex
+    align-items center
+    justify-content center
+    height 20px
+    font-weight 500
+    font-size text-size
+    img
+      margin 5px
+      width 17px
+  .userProfileHeader__info--username
+    font-weight 400
+    font-size mini-text-size
+
+
+
+

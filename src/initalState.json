@@ -1,0 +1,233 @@
+{
+  "user": {
+    "id": 1,
+    "firstName": "José",
+    "lastName": "Marquínez",
+    "username": "jose_tells",
+    "profilePhoto": "",
+    "verified": true,
+    "contributions": {
+      "posts": [],
+      "photos": [
+        {
+          "id": "1",
+          "media": "",
+          "metadata": "sky.jpg"
+        },
+        {
+          "id": "2",
+          "media": "",
+          "metadata": "cat.jpg"
+        }
+      ],
+      "comments": [
+        {
+          "id": "1",
+          "user": {
+            "id": "1",
+            "username": "jony_xd",
+            "photo": ""
+          },
+          "content": "Try to find all easter eggs!",
+          "inResponse": "",
+          "leadComment": true,
+          "date": "1/10/2021"
+        },
+        {
+          "id": 2,
+          "user": {
+            "id": 6,
+            "username": "jose_tells",
+            "photo": ""
+          },
+          "content": "This is fine, I'll try that",
+          "commentTo": {
+            "id": 1,
+            "content": "Try to find all easter eggs!",
+            "date": "1/10/2021"
+          },
+          "inResponse": true,
+          "leadComment": false,
+          "date": "1/10/2021"
+        }
+      ]
+    }
+  },
+  "post": {
+    "id": 1,
+    "name": "Costa del Este",
+    "averagePrice": 24,
+    "weatherEmoji": [
+      "https://img.icons8.com/emoji/48/000000/sun-emoji.png",
+      "sunny"
+    ],
+    "weather": 30,
+    "photo": "",
+    "userCreator": {
+      "name": "Jose",
+      "photo": "",
+      "verified": true
+    },
+    "usersContributors": [
+      {
+        "id": 1,
+        "name": "Agustín",
+        "photo": ""
+      },
+      {
+        "id": 2,
+        "name": "Jonathan",
+        "photo": ""
+      },
+      {
+        "id": 3,
+        "name": "José",
+        "photo": ""
+      },
+      {
+        "id": 4,
+        "name": "David",
+        "photo": ""
+      }
+    ],
+    "rankings": [
+      {
+        "rankId": 1,
+        "rankName": "Security",
+        "rankEmoji": "https://img.icons8.com/emoji/48/000000/woman-police-officer.png",
+        "rankStatus": "20"
+      },
+      {
+        "rankId": 2,
+        "rankName": "Beaches",
+        "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png",
+        "rankStatus": "50"
+      },
+      {
+        "rankId": 3,
+        "rankName": "Cleanly",
+        "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png",
+        "rankStatus": "0"
+      },
+      {
+        "rankId": 4,
+        "rankName": "Hotels",
+        "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png",
+        "rankStatus": "20"
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "user": {
+          "id": 6,
+          "username": "jose_tells",
+          "photo": ""
+        },
+        "content": "Hi!!!!",
+        "date": "1/10/2021",
+        "replies": [
+          {
+            "id": 2,
+            "user": {
+              "id": "1",
+              "username": "jony_xd",
+              "photo": ""
+            },
+            "content": "Hi!",
+            "date": "1/10/2021"
+          },
+          {
+            "id": 3,
+            "user": {
+              "id": "1",
+              "username": "jony_xd",
+              "photo": ""
+            },
+            "content": "Xopaa!",
+            "date": "1/10/2021"
+          },
+          {
+            "id": 4,
+            "user": {
+              "id": "1",
+              "username": "jony_xd",
+              "photo": ""
+            },
+            "content": "It's fine!",
+            "date": "1/10/2021"
+          }
+        ]
+      }
+    ]
+  },
+  "comments": [
+    {
+      "id": "1",
+      "user": {
+        "id": "1",
+        "username": "jony_xd",
+        "photo": ""
+      },
+      "content": "Try to find all easter eggs!",
+      "inResponse": "",
+      "leadComment": true,
+      "date": "1/10/2021"
+    },
+    {
+      "id": 2,
+      "user": {
+        "id": 6,
+        "username": "jose_tells",
+        "photo": ""
+      },
+      "content": "This is fine, I'll try that",
+      "commentTo": {
+        "id": 1,
+        "content": "Try to find all easter eggs!",
+        "date": "1/10/2021"
+      },
+      "inResponse": true,
+      "leadComment": false,
+      "date": "1/10/2021"
+    }
+  ],
+  "places": [
+    {
+      "id": 1,
+      "placeName": "San Blas",
+      "province": "Guna Yala",
+      "photo": "",
+      "reviews": [],
+      "rankings": [],
+      "top": true
+    }
+  ],
+  "rankings": [
+    {
+      "id": 1,
+      "rankName": "Security",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/woman-police-officer.png"
+    },
+    {
+      "rankId": 2,
+      "rankName": "Beaches",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png"
+    },
+    {
+      "rankId": 3,
+      "rankName": "Cleanly",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png"
+    },
+    {
+      "rankId": 4,
+      "rankName": "Hotels",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png"
+    },
+    {
+      "rankId": 5,
+      "rankName": "top",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/top-arrow-emoj.png"
+    }
+  ]
+}

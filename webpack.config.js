@@ -41,7 +41,7 @@ module.exports = {
     historyApiFallback: true, // If it's a 404 response the index.html will be the fallback
     liveReload: true, // Hot Module Replacement (HMR) for live reloads
     open: true, // When server has started open the default-browser
-    port: 3000,
+    port: 8000,
   },
   plugins: [
     // HtmlWebpackPlugin generate an HTML5 file that includes the webpack configuration in a script at the top of the HTML file.
