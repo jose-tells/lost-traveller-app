@@ -3,27 +3,23 @@ import React from 'react';
 import UserProfileButton from './UserProfileButton';
 
 const UserProfileSections = (props) => {
-  const { setUserSection } = props;
-
-  const postLength = 3;
-  const photosLength = 4;
-  const commentsLength = 10;
+  const { user, setUserSection } = props;
 
   return (
     <div className='UserProfileSections__container'>
       <UserProfileButton
         buttonName='Posts'
-        itemsLength={postLength}
+        itemsLength={user.contributions.posts.length}
         setUserSection={setUserSection}
       />
       <UserProfileButton
         buttonName='Photos'
-        itemsLength={photosLength}
+        itemsLength={user.contributions.photos.length}
         setUserSection={setUserSection}
       />
       <UserProfileButton
         buttonName='Comments'
-        itemsLength={commentsLength}
+        itemsLength={user.contributions.comments.length}
         setUserSection={setUserSection}
       />
     </div>

@@ -1,4 +1,6 @@
 import React from 'react';
+// Redux
+import { connect } from 'react-redux';
 // Classnames
 import classNames from 'classnames';
 // Components
@@ -7,7 +9,7 @@ import ForumSection from './ForumSection';
 
 const CommentsSection = (props) => {
 
-  const { section, setSection, isContribution, isForum, setContribution, setForum } = props;
+  const { post, user, section, setSection, isContribution, isForum, setContribution, setForum } = props;
 
   const handleContribution = () => {
     setSection('Contribution');
@@ -35,9 +37,15 @@ const CommentsSection = (props) => {
         <h1 className={itemStyles} onClick={handleContribution}>Contribution</h1>
         <h1 className={forumStyles} onClick={handleForum}>Forum</h1>
       </div>
-      {section.toLowerCase() === 'forum' ? <ForumSection /> : <ContributionSection /> }
+      {section.toLowerCase() === 'forum' ? <ForumSection user={user} postComments={post.comments} /> : <ContributionSection user={user} /> }
     </>
   );
 };
 
-export default CommentsSection;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, null)(CommentsSection);

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// Redux
+import { connect } from 'react-redux';
 //Components
 import PostsInfo from '../components/PostsInfo';
 import PostMenu from '../components/PostMenu';
@@ -11,7 +13,9 @@ import SwipingBar from '../components/SwipingBar';
 import '../assets/styles/Posts.styl';
 import Footer from '../components/Footer';
 
-const Posts = () => {
+const Posts = (props) => {
+  const { post } = props;
+
   const [section, setSection] = useState('Contribution');
   const [isContribution, setContribution] = useState(true);
   const [isForum, setForum] = useState(false);
@@ -19,16 +23,17 @@ const Posts = () => {
   return (
     <>
       <SwipingBar />
-      <PostsInfo />
+      <PostsInfo post={post} />
       <PostMenu
         setContribution={setContribution}
         setForum={setForum}
         setSection={setSection}
       />
-      <PostRankings />
+      <PostRankings post={post} />
       <PostReview />
-      <UserRatingSystem />
+      <UserRatingSystem post={post} />
       <CommentsSection
+        post={post}
         section={section}
         setContribution={setContribution}
         setForum={setForum}
@@ -41,4 +46,10 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+const mapStateToProps = (state) => {
+  return {
+    post: state.post,
+  };
+};
+
+export default connect(mapStateToProps, null)(Posts);

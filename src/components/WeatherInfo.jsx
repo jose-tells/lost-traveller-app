@@ -1,9 +1,11 @@
 import React from 'react';
 
-const WeatherInfo = () => {
+const WeatherInfo = (props) => {
+  const { weatherInfo } = props;
+
   return (
     <div className='postInfo__weather'>
-      <img src='https://img.icons8.com/emoji/48/000000/sun-emoji.png' alt='Sunny' />
+      <img src={weatherInfo[0]} alt={weatherInfo[1]} />
       <h1>30°</h1>
     </div>
   );

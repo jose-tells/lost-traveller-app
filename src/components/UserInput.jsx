@@ -3,11 +3,9 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 // Components
 import UserPhoto from './UserPhoto';
-// Media
-import photo1 from '../assets/img/PerfilPhoto.jpg';
 
 const UserInput = (props) => {
-  const { minLength, maxLength, placeholder, isForum } = props;
+  const { minLength, maxLength, placeholder, isForum, profilePhoto, username } = props;
 
   const [inputLength, setLength] = useState(0);
 
@@ -21,7 +19,7 @@ const UserInput = (props) => {
 
   return (
     <div className='commentsSection__contribution'>
-      <UserPhoto testProfilePhoto={photo1} />
+      <UserPhoto profilePhoto={profilePhoto} username={username} />
       <div className='commentsSection__contribution--container'>
         <form className='commentsSection__contribution--form'>
           <textarea

@@ -3,23 +3,24 @@ import React from 'react';
 import RankItem from './RankItem';
 import RankingBar from './RankingBar';
 
-const UserRatingSystem = () => {
+const UserRatingSystem = (props) => {
+  const { post } = props;
+
   const HotelEmoji = 'https://img.icons8.com/emoji/48/000000/hotel-emoji.png';
 
   return (
     <>
       <h1 className='postUserRatingSystem__title'>With your experience, how would you rate this place?</h1>
       <div className='postRankings__container'>
-        <RankItem emojiItem='https://img.icons8.com/emoji/48/000000/woman-police-officer.png' altText='Security' />
-        <RankItem emojiItem='https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png' altText='Security' />
-        <RankItem emojiItem='https://img.icons8.com/emoji/48/000000/mountain-emoji.png' altText='Security' />
-        <RankItem emojiItem='https://img.icons8.com/emoji/48/000000/camping.png' altText='Security' />
-        <RankItem emojiItem={HotelEmoji} altText='Security' />
-        <RankItem emojiItem='https://img.icons8.com/emoji/48/000000/motorway.png' altText='Accessibility' />
-        <RankItem emojiItem='https://img.icons8.com/emoji/48/000000/sun-behind-cloud.png' altText='Sunny' />
-        <RankItem emojiItem='https://img.icons8.com/emoji/48/000000/top-arrow-emoj.png' altText='Top Place' />
-        <RankItem emojiItem='https://img.icons8.com/emoji/48/000000/money-mouth-face.png' altText='Security' />
-        <RankItem emojiItem='https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png' altText='Security' />
+        <div className='postRankings__flex'>
+          {post.rankings.map((rank) => (
+            <RankItem
+              key={rank.rankId}
+              emojiItem={rank.rankEmoji}
+              altText={rank.rankName}
+            />
+          ))}
+        </div>
       </div>
       <RankingBar
         emojiItem={HotelEmoji}

@@ -2,14 +2,21 @@ import React from 'react';
 // Components
 import PhotoLayout from './PhotoLayout';
 
-const UserPhotosGrid = () => {
+const UserPhotosGrid = (props) => {
+  const { userPhotos } = props;
+
   return (
     <>
       <section className='userPhotosGrid__container'>
-        <PhotoLayout />
-        <PhotoLayout />
-        <PhotoLayout />
-        <PhotoLayout />
+        {
+          userPhotos.map((photo) => (
+            <PhotoLayout
+              key={photo.id}
+              media={photo.media}
+              metadata={photo.metadata}
+            />
+          ))
+        }
       </section>
     </>
   );
