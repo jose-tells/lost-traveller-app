@@ -1,0 +1,44 @@
+@import 'vars.styl';
+@import 'globals.styl';
+
+.walpaper-img
+    position: absolute
+    width: 100vw
+    height: 100%
+    object-fit: cover;
+    filter: brightness(.8)
+    z-index:0;
+    // border: solid red
+.index_presentation-container
+    display: flex;
+    flex-direction: column
+    justify-content: first baseline
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    // background: color4;
+    // border: 2px solid red;
+.button-container
+    display: flex
+    align-self: center
+    // margin: auto
+    margin-top: 65em; //important investigate a more responsive method
+    // margin-bottom: 1em
+    justify-content: center
+    align-items: center
+    width: 12em
+    height: 2.5em
+    border: 1px solid White;
+    border-radius: 1em;
+    z-index: 300
+.singUp-btn
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 1.8rem
+    text-align: center
+    color: White;
+
+@import './components/MenuNav.styl'
+@import './components/SlideMenuBar.styl'
+@import './components/HomeTemplate.styl'
+@import './components/LocationPresentationHome.styl'
