@@ -22,7 +22,7 @@ const Home = () => {
         </div>
         <HomeTemplate open={open} handleDisplayMenu={handle} />
         <div className='button-container'>
-          <Link to='/signUp' className='singUp-btn'>Sign In</Link>
+          <Link to='/signIn' className='singUp-btn'>Sign In</Link>
         </div>
       </div>
       <div className='grid-locations-container'>
