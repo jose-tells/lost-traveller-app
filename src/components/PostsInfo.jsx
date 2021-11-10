@@ -3,10 +3,9 @@ import React from 'react';
 import BackwardsButton from './BackwardsButton';
 import WeatherInfo from './WeatherInfo';
 import UserPhoto from './UserPhoto';
-// Media
-import testPostPhoto from '../assets/img/Bocas-del-Toro-Panama.jpg'
 
 const PostInfo = (props) => {
+
   const {
     backwards,
     averagePrice,
@@ -24,7 +23,7 @@ const PostInfo = (props) => {
     <>
       <div className='postInfo__container'>
         <div className='postInfo'>
-          <img className='postInfo__photo' src={testPostPhoto} alt={postName} />
+          <img className='postInfo__photo' src={postPhoto} alt={postName} />
           <BackwardsButton backwards={backwards} />
           <WeatherInfo weatherInfo={postWeatherEmoji} />
           <div className='postInfo__title'>

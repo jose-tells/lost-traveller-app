@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 // Components
 import MenuNav from '../components/MenuNav';
 import SignInWrapper from '../components/SignInWrapper';

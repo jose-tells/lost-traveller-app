@@ -16,6 +16,8 @@ const LocationPresentationHome = (props) => {
     setOpenFilter(!openFilter);
   };
 
+  console.log(filterRanks);
+
   return (
     <main className='lostLocations__container'>
       <div className='lostLocations__title--container'>
@@ -35,8 +37,8 @@ const LocationPresentationHome = (props) => {
             <RankItem
               key={filterRank.rankId}
               rankId={filterRank.rankId}
-              altText={filterRank.rankName}
-              emojiItem={filterRank.rankEmoji}
+              rankName={filterRank.rankName}
+              rankEmoji={filterRank.rankEmoji}
               isFilter
             />
           ))}

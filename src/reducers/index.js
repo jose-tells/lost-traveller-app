@@ -20,6 +20,14 @@ const reducer = (state, action) => {
         ...state,
         post: state.posts.find((post) => (post.id === Number(action.payload))) || [],
       };
+    case 'ADDING_RANKING':
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          addRankings: action.payload,
+        },
+      };
     default:
       return state;
   };
