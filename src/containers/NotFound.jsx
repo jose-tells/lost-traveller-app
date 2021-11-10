@@ -5,32 +5,35 @@ import MenuNav from '../components/MenuNav';
 //styles
 import '../assets/styles/NotFound.styl';
 //img
-import notFoundImg from '../assets/Svg/404.svg';
-import compasBroken from '../assets/Svg/compassBrokenWhite.svg';
+import compassBroken from '../assets/Svg/compassBrokenWhite.svg';
 
 export default function NotFound() {
   return (
     <>
-      <div className='menu-container'>
-        <MenuNav />
-      </div>
-      <div className='notFound-container'>
-        <div className='ilustration-container'>
-          <img src={notFoundImg} alt='404' />
-          <h1 className='Notfound__message'>NOT FOUND</h1>
+      <MenuNav />
+      <main className='notFound__container'>
+        <div className='notFoundCode__container'>
+          <div className='notFoundCode__number--container'>
+            <h1 className='notFoundCode__number'>4</h1>
+            <img className='notFoundCode__image' src={compassBroken} alt='404' />
+            <h1 className='notFoundCode__number'>4</h1>
+          </div>
+          <h2 className='notfound__title'>NOT FOUND</h2>
         </div>
-        <div className='message-container'>
-          <span>
+        <div className='notFound__message--container'>
+          <h2 className='notFound__message'>
             Oooops! Seems like
+            <br />
             you’re a bit lost
+            <br />
             traveller!
-          </span>
+          </h2>
         </div>
-        <div className='link-places__container'>
-          <Link to='/' className='link-text'>Places</Link>
-          <img src={compasBroken} alt='compass' className='compass__img' />
-        </div>
-      </div>
+        <Link to='/' className='linkPlaces__container'>
+          <h3 className='linkPlaces__text'>Places</h3>
+          <img src={compassBroken} alt='compass' className='linkPlaces__image' />
+        </Link>
+      </main>
     </>
   );
 }

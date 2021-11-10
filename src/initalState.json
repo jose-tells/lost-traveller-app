@@ -53,114 +53,251 @@
       ]
     }
   },
-  "post": {
-    "id": 1,
-    "name": "Costa del Este",
-    "averagePrice": 24,
-    "weatherEmoji": [
-      "https://img.icons8.com/emoji/48/000000/sun-emoji.png",
-      "sunny"
-    ],
-    "weather": 30,
-    "photo": "",
-    "userCreator": {
-      "name": "Jose",
+  "post": {},
+  "posts": [
+    {
+      "id": 2345,
+      "name": "Costa del Este",
+      "province": "Panama",
+      "averagePrice": 24,
       "photo": "",
-      "verified": true
-    },
-    "usersContributors": [
-      {
-        "id": 1,
-        "name": "Agustín",
-        "photo": ""
+      "weather": 30,
+      "weatherEmoji": [
+        "https://img.icons8.com/emoji/48/000000/sun-emoji.png",
+        "sunny"
+      ],
+      "userCreator": {
+        "name": "Jose",
+        "username": "jose_tells",
+        "photo": "",
+        "verified": true
       },
-      {
-        "id": 2,
-        "name": "Jonathan",
-        "photo": ""
-      },
-      {
-        "id": 3,
-        "name": "José",
-        "photo": ""
-      },
-      {
-        "id": 4,
-        "name": "David",
-        "photo": ""
-      }
-    ],
-    "rankings": [
-      {
-        "rankId": 1,
-        "rankName": "Security",
-        "rankEmoji": "https://img.icons8.com/emoji/48/000000/woman-police-officer.png",
-        "rankStatus": "20"
-      },
-      {
-        "rankId": 2,
-        "rankName": "Beaches",
-        "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png",
-        "rankStatus": "50"
-      },
-      {
-        "rankId": 3,
-        "rankName": "Cleanly",
-        "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png",
-        "rankStatus": "0"
-      },
-      {
-        "rankId": 4,
-        "rankName": "Hotels",
-        "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png",
-        "rankStatus": "20"
-      }
-    ],
-    "comments": [
-      {
-        "id": 1,
-        "user": {
-          "id": 6,
+      "usersContributors": [
+        {
+          "id": 1,
+          "name": "Agustín",
+          "username": "agus_02",
+          "photo": ""
+        },
+        {
+          "id": 2,
+          "name": "Jonathan",
+          "username": "jony_xd",
+          "photo": ""
+        },
+        {
+          "id": 3,
+          "name": "José",
           "username": "jose_tells",
           "photo": ""
         },
-        "content": "Hi!!!!",
-        "date": "1/10/2021",
-        "replies": [
-          {
-            "id": 2,
-            "user": {
-              "id": "1",
-              "username": "jony_xd",
-              "photo": ""
-            },
-            "content": "Hi!",
-            "date": "1/10/2021"
+        {
+          "id": 4,
+          "name": "David",
+          "username": "dave_32",
+          "photo": ""
+        }
+      ],
+      "addRankings": {},
+      "rankings": [
+        {
+          "rankId": 1,
+          "rankName": "Security",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/woman-police-officer.png",
+          "rankStatus": "20"
+        },
+        {
+          "rankId": 2,
+          "rankName": "Beaches",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png",
+          "rankStatus": "50"
+        },
+        {
+          "rankId": 3,
+          "rankName": "Cleanly",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png",
+          "rankStatus": "0"
+        },
+        {
+          "rankId": 4,
+          "rankName": "Hotels",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png",
+          "rankStatus": "20"
+        }
+      ],
+      "comments": [
+        {
+          "id": 1,
+          "user": {
+            "id": 6,
+            "username": "jose_tells",
+            "photo": ""
           },
-          {
-            "id": 3,
-            "user": {
-              "id": "1",
-              "username": "jony_xd",
-              "photo": ""
+          "content": "Hi!!!!",
+          "date": "1/10/2021",
+          "replies": [
+            {
+              "id": 2,
+              "user": {
+                "id": "1",
+                "username": "jony_xd",
+                "photo": ""
+              },
+              "content": "Hi!",
+              "date": "1/10/2021"
             },
-            "content": "Xopaa!",
-            "date": "1/10/2021"
+            {
+              "id": 3,
+              "user": {
+                "id": "1",
+                "username": "jony_xd",
+                "photo": ""
+              },
+              "content": "Xopaa!",
+              "date": "1/10/2021"
+            },
+            {
+              "id": 4,
+              "user": {
+                "id": "1",
+                "username": "jony_xd",
+                "photo": ""
+              },
+              "content": "It's fine!",
+              "date": "1/10/2021"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2346,
+      "name": "San Blas",
+      "province": "Kuna Yala",
+      "averagePrice": 300,
+      "photo": "",
+      "weather": 35,
+      "weatherEmoji": [
+        "https://img.icons8.com/emoji/48/000000/sun-emoji.png",
+        "sunny"
+      ],
+      "userCreator": {
+        "name": "Jonathan",
+        "username": "jony_xd",
+        "photo": "",
+        "verified": true
+      },
+      "usersContributors": [
+        {
+          "id": 1,
+          "name": "José",
+          "username": "jose_tells",
+          "photo": ""
+        },
+        {
+          "id": 2,
+          "name": "Jonathan",
+          "username": "jony_xd",
+          "photo": ""
+        },
+        {
+          "id": 3,
+          "name": "Agustín",
+          "username": "agus_02",
+          "photo": ""
+        },
+        {
+          "id": 4,
+          "name": "David",
+          "username": "dave_32",
+          "photo": ""
+        },
+        {
+          "id": 9,
+          "name": "Demian",
+          "username": "des_43_2",
+          "photo": ""
+        }
+      ],
+      "addRankings": {},
+      "rankings": [
+        {
+          "rankId": 1,
+          "rankName": "Security",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/woman-police-officer.png",
+          "rankStatus": "20"
+        },
+        {
+          "rankId": 2,
+          "rankName": "Beaches",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png",
+          "rankStatus": "50"
+        },
+        {
+          "rankId": 3,
+          "rankName": "Cleanly",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png",
+          "rankStatus": "0"
+        },
+        {
+          "rankId": 4,
+          "rankName": "Hotels",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png",
+          "rankStatus": "20"
+        },
+        {
+          "rankId": 5,
+          "rankName": "Accessibility",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/motorway.png",
+          "rankStatus": "20"
+        }
+      ],
+      "comments": [
+        {
+          "id": 1,
+          "user": {
+            "id": 6,
+            "username": "jose_tells",
+            "photo": ""
           },
-          {
-            "id": 4,
-            "user": {
-              "id": "1",
-              "username": "jony_xd",
-              "photo": ""
+          "content": "Hi!!!!",
+          "date": "1/10/2021",
+          "replies": [
+            {
+              "id": 2,
+              "user": {
+                "id": "1",
+                "username": "jony_xd",
+                "photo": ""
+              },
+              "content": "Hi!",
+              "date": "1/10/2021"
             },
-            "content": "It's fine!",
-            "date": "1/10/2021"
-          }
-        ]
-      }
-    ]
-  },
+            {
+              "id": 3,
+              "user": {
+                "id": "1",
+                "username": "jony_xd",
+                "photo": ""
+              },
+              "content": "Xopaa!",
+              "date": "1/10/2021"
+            },
+            {
+              "id": 4,
+              "user": {
+                "id": "1",
+                "username": "jony_xd",
+                "photo": ""
+              },
+              "content": "It's fine!",
+              "date": "1/10/2021"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "comments": [
     {
       "id": "1",
@@ -205,29 +342,30 @@
   ],
   "rankings": [
     {
-      "id": 1,
+      "rankId": 456,
       "rankName": "Security",
       "rankEmoji": "https://img.icons8.com/emoji/48/000000/woman-police-officer.png"
     },
     {
-      "rankId": 2,
+      "rankId": 457,
       "rankName": "Beaches",
       "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png"
     },
     {
-      "rankId": 3,
+      "rankId": 458,
       "rankName": "Cleanly",
       "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png"
     },
     {
-      "rankId": 4,
+      "rankId": 459,
       "rankName": "Hotels",
       "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png"
     },
     {
-      "rankId": 5,
+      "rankId": 460,
       "rankName": "top",
       "rankEmoji": "https://img.icons8.com/emoji/48/000000/top-arrow-emoj.png"
     }
-  ]
+  ],
+  "filterRanks": []
 }

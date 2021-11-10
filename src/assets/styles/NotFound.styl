@@ -1,44 +1,65 @@
-@import './globals';
-@import './vars';
+@import './globals'
+@import './vars'
 
-.menu-container
-    background-color: color4;
-    position: absolute
-.notFound-container
-    display: flex
-    flex-direction: column
-    justify-content: center
-    width: 100vw
-    height: 100vh
-    background: Elegant-black
-.ilustration-container
-    width: 95vw
-    align-self: center
-.Notfound__message
-    font-weight: 500;
-    text-align: center
-    font-size: 2em;
-    line-height: 68.9%;
-    color: White
-.message-container
-    align-self center;
-    margin-top: 3em 
-    margin-bottom: 1.5em 
-    width: 65vw;
-    font-weight: 600;
-    font-size: 1.5em;
-    line-height: 1em;
-    text-align: center
-    color: White
-.link-places__container
-    display: flex
-    justify-content: center
-.link-text
-    align-self: center
-    padding: .5em
-    text-decoration: none
-    font-weight: 500;
-    font-size: .9em
-    color: Complementary-icon
-.compass__img
-    width: 15vw
+.notFound__container
+  width 100vw
+  height 100vh
+  display grid
+  grid-template-columns 1fr
+  grid-template-rows repeat(8, 1fr)
+  background Elegant-black
+  .notFoundCode__container
+    display flex
+    flex-direction column
+    justify-content center
+    grid-column 1
+    grid-row 3/6
+    align-self center
+    .notfound__title
+      font-weight 500
+      text-align center
+      font-size 30px
+      color White
+
+.notFoundCode__number--container
+  display flex
+  justify-content center
+  .notFoundCode__number
+    font-size 140px
+    font-weight 700
+    color White
+  .notFoundCode__image
+    width 140px
+
+.notFound__message--container
+  width 100%
+  grid-column 1
+  grid-row 6/7
+  align-self center
+  text-align center
+  color White
+  .notFound__message
+    font-weight 500
+    font-size title-size
+
+.linkPlaces__container
+  width 120px
+  height 40px
+  margin-top 10px
+  // Griding
+  justify-self center
+  grid-column 1
+  grid-row 7/8
+  // Flexing
+  display flex
+  justify-content center
+  text-decoration none
+  .linkPlaces__text
+    align-self center
+    text-decoration none
+    font-weight 400
+    font-size text-size
+    color Complementary-icon
+  .linkPlaces__image
+    width 48px
+    transform rotateZ(90deg)

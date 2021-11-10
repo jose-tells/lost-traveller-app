@@ -6,7 +6,7 @@ const ContributionSection = (props) => {
   const { user } = props;
 
   return (
-    <div id='contribution'>
+    <div>
       <UserInput
         minLength='20'
         maxLength='200'
