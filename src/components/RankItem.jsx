@@ -1,13 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import addingRanking from '../actions';
 
 const RankItem = (props) => {
-  const { emojiItem, altText } = props;
-
+  const { rankEmoji, rankName, rankId, rankStatus, addingRanking } = props;
+  const handleAddingRanking = () => {
+    addingRanking({ rankId, rankName, rankEmoji, rankStatus });
+  };
   return (
-    <div className='postRanking__item'>
-      <img src={emojiItem} alt={altText} />
-    </div>
+    <button type='button' className='postRanking__item' onClick={handleAddingRanking}>
+      <img src={rankEmoji} alt={rankName} />
+    </button>
   );
 };
-
-export default RankItem;
+const mapDispatchToProps = {
+  addingRanking,
+};
+export default connect(null, mapDispatchToProps)(RankItem);

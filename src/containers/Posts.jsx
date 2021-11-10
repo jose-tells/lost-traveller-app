@@ -14,7 +14,8 @@ import '../assets/styles/Posts.styl';
 import Footer from '../components/Footer';
 
 const Posts = (props) => {
-  const { post } = props;
+  const { post, addingRanking, rankings, addRankings } = props;
+  // console.log(state)
 
   const [section, setSection] = useState('Contribution');
   const [isContribution, setContribution] = useState(true);
@@ -29,7 +30,12 @@ const Posts = (props) => {
         setForum={setForum}
         setSection={setSection}
       />
-      <PostRankings post={post} />
+      <PostRankings
+        post={post}
+        addingRanking={addingRanking}
+        addRankings={addRankings}
+        rankings={rankings}
+      />
       <PostReview />
       <UserRatingSystem post={post} />
       <CommentsSection
@@ -49,6 +55,8 @@ const Posts = (props) => {
 const mapStateToProps = (state) => {
   return {
     post: state.post,
+    rankings: state.post.rankings,
+    addRankings: state.post.addRankings,
   };
 };
 
