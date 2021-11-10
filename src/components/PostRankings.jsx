@@ -6,7 +6,7 @@ import RankingBar from './RankingBar';
 import RankItem from './RankItem';
 
 const PostRankings = (props) => {
-  const { addRankings } = props;
+  const { addRankings, postRankings } = props;
 
   return (
     <>

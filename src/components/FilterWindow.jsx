@@ -23,8 +23,7 @@ const FilterWindow = (props) => {
             key={ranking.rankId}
             rankId={ranking.rankId}
             rankEmoji={ranking.rankEmoji}
-            rankAlt={ranking.rankName}
-            rankDescription={ranking.rankName}
+            rankName={ranking.rankName}
             setOpenFilter={setOpenFilter}
           />
         ))

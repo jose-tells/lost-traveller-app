@@ -6,17 +6,17 @@ import { connect } from 'react-redux';
 import { addFilterRank } from '../actions';
 
 const FilterWindowItem = (props) => {
-  const { addFilterRank, rankId, rankEmoji, rankAlt, rankDescription, setOpenFilter } = props;
+  const { addFilterRank, rankId, rankEmoji, rankName, setOpenFilter } = props;
 
   const handleClick = () => {
-    addFilterRank({ rankId, rankAlt, rankEmoji });
+    addFilterRank({ rankId, rankName, rankEmoji });
     setOpenFilter(false);
   };
 
   return (
     <div className='filterWindow__item--container' onClick={handleClick}>
-      <img className='filterWindow__item--emoji' src={rankEmoji} alt={rankAlt} />
-      <p className='filterWindow__item--text'>{rankDescription}</p>
+      <img className='filterWindow__item--emoji' src={rankEmoji} alt={rankName} />
+      <p className='filterWindow__item--text'>{rankName}</p>
     </div>
   );
 };

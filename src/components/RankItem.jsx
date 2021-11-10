@@ -6,18 +6,23 @@ import { connect } from 'react-redux';
 import { addingRanking, removeFilterRank } from '../actions';
 
 const RankItem = (props) => {
-  const { rankEmoji, rankName, rankId, rankStatus, addingRanking } = props;
+  const { rankEmoji, rankName, rankId, rankStatus, addingRanking, removeFilterRank, isFilter } = props;
   const handleAddingRanking = () => {
-    removeFilterRank(rankId);
     addingRanking({ rankId, rankName, rankEmoji, rankStatus });
   };
+
+  const handleClick = () => {
+    removeFilterRank(rankId);
+  };
+
   return (
-    <button type='button' className='postRanking__ite' onClick={handleAddingRanking}>
+    <button type='button' className='postRanking__item' onClick={isFilter ? handleClick : handleAddingRanking}>
       {isFilter && <div className='postRanking__item--close'>x</div>}
-      <img src={rankEmoji} alt={rankName} />
+      <img className='postRanking__item--emoji' src={rankEmoji} alt={rankName} />
     </button>
   );
 };
+
 const mapDispatchToProps = {
   addingRanking,
   removeFilterRank,
