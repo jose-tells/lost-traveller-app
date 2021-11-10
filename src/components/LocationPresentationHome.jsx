@@ -1,23 +1,56 @@
 import React, { useState } from 'react';
-//components
+// Redux
+import { connect } from 'react-redux';
+// Components
 import SearchFilter from './SearchFilter';
-import GridPlaces from './GridPlaces';
 import FilterWindow from './FilterWindow';
+import RankItem from './RankItem';
+import GridLocations from './GridLocations';
 
-export default function LocationPresentaionHome() {
+const LocationPresentationHome = (props) => {
+  const { filterRanks } = props;
+
   const [openFilter, setOpenFilter] = useState(false);
-  const handleFilterdisplay = () => {
+
+  const handleFilterDisplay = () => {
     setOpenFilter(!openFilter);
-    console.log(openFilter);
   };
+
   return (
-    <div className='location-container'>
-      <h1 className='title'>
-        The Lost Locations
-      </h1>
-      <SearchFilter openFilter={openFilter} handleFilterdisplay={handleFilterdisplay} />
-      <FilterWindow openFilter={openFilter} handleFilterdisplay={handleFilterdisplay} />
-      <GridPlaces />
-    </div>
+    <main className='lostLocations__container'>
+      <div className='lostLocations__title--container'>
+        <h1 className='lostLocations__title'>
+          The Lost Locations
+        </h1>
+      </div>
+      <SearchFilter handleFilterDisplay={handleFilterDisplay} />
+      <FilterWindow
+        handleFilterDisplay={handleFilterDisplay}
+        openFilter={openFilter}
+        setOpenFilter={setOpenFilter}
+      />
+      {filterRanks.length > 0 && (
+        <div className='filtersAdded__container'>
+          {filterRanks.map((filterRank) => (
+            <RankItem
+              key={filterRank.rankId}
+              rankId={filterRank.rankId}
+              altText={filterRank.rankName}
+              emojiItem={filterRank.rankEmoji}
+              isFilter
+            />
+          ))}
+        </div>
+      )}
+      <GridLocations />
+    </main>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    filterRanks: state.filterRanks,
+  };
+};
+
+export default connect(mapStateToProps, null)(LocationPresentationHome);

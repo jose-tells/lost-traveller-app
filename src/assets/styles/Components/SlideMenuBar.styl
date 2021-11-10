@@ -1,24 +1,24 @@
-.menuBar-container 
-    display: grid
-    grid-template-rows: repeat(4,1fr)
-    justify-items: center
-    align-items center
-    position: fixed
-    width: 100%;
-    z-index: 500;
-    // border:solid blue;
-    background: Elegant-black;
-    transition: .5s linear; 
-    overflow: hidden
-.menu__links
-    text-decoration: none;
-    font-size: 2.4rem
-    color:White
-.socialMedia-container__menu
-    display: grid
-    grid-template-columns: repeat(4,1fr);
-    grid-gap: 3.5em
-    margin-bottom: 1em
-.icons
-    color: Backg-blue;
-    transform: scale(2)
+.slideMenuBar__container
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  gap 20px
+  width 100%
+  height 80%
+  transition .5s linear
+  overflow hidden
+  .slideMenuBar__links
+    font-size title-size
+    font-weight 400
+    text-decoration none
+    color Elegant-black
+
+.slideMenuBar__icon--container
+  width 125px
+  display flex
+  justify-content space-between
+  .slideMenuBar__icon--item
+    margin-top 20px
+    color Complementary-icon
+    transform scale(2)

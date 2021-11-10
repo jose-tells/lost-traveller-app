@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// Classnames
+import classNames from 'classnames';
 // Components
 import UserPhoto from './UserPhoto';
 import CommentResponsesLayout from './CommentResponsesLayout';
@@ -7,10 +9,12 @@ import CommentResponsesLayout from './CommentResponsesLayout';
 const UserCommentLayout = (props) => {
   const { comment, profilePhoto, replies, username, isProfile, isForum } = props;
 
-  console.log(replies);
+  const userCommentsLayoutContainerStyles = classNames('userCommentLayout__container', {
+    isForum,
+  });
 
   return (
-    <div className='userCommentLayout__container'>
+    <div className={userCommentsLayoutContainerStyles}>
       <div className='userCommentLayout__userCommentContainer'>
         <UserPhoto profilePhoto={profilePhoto} username={username} isComment />
         <div className='userCommentLayout__commentContainer'>

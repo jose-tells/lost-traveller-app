@@ -4,7 +4,7 @@ import RankItem from './RankItem';
 import RankingBar from './RankingBar';
 
 const PostRankings = (props) => {
-  const { post } = props;
+  const { postRankings } = props;
 
   const HotelEmoji = 'https://img.icons8.com/emoji/48/000000/hotel-emoji.png';
 
@@ -12,7 +12,7 @@ const PostRankings = (props) => {
     <>
       <div className='postRankings__container'>
         <div className='postRankings__flex'>
-          {post.rankings.map((rank) => (
+          {postRankings.map((rank) => (
             <RankItem
               key={rank.rankId}
               emojiItem={rank.rankEmoji}
