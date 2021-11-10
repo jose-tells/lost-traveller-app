@@ -70,6 +70,8 @@ const Posts = (props) => {
 const mapStateToProps = (state) => {
   return {
     post: state.post,
+    rankings: state.post.rankings,
+    addRankings: state.post.addRankings,
   };
 };
 

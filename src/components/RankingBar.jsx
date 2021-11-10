@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 const RankingBar = (props) => {
-  const { emojiItem, altText, isRating, rankTitle, rankStatus } = props;
+  const { rankEmoji, rankName, isRating, rankStatus } = props;
 
   const rankingBar = classNames('rankingBar__bar', {
     isRating,
@@ -11,8 +11,8 @@ const RankingBar = (props) => {
 
   return (
     <div className='rankingBar__container'>
-      <img className='rankingBar__emoji' src={emojiItem} alt={altText} />
-      <p className='rankingBar__title'>{rankTitle}</p>
+      <img className='rankingBar__emoji' src={rankEmoji} alt={rankName} />
+      <p className='rankingBar__title'>{rankName}</p>
       <div className={rankingBar}>
         <div className='rankingBar__bar--percentage' />
       </div>

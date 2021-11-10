@@ -1,12 +1,12 @@
 import React from 'react';
+//redux
+import { connect } from 'react-redux';
 // Components
-import RankItem from './RankItem';
 import RankingBar from './RankingBar';
+import RankItem from './RankItem';
 
 const PostRankings = (props) => {
-  const { postRankings } = props;
-
-  const HotelEmoji = 'https://img.icons8.com/emoji/48/000000/hotel-emoji.png';
+  const { addRankings } = props;
 
   return (
     <>
@@ -14,21 +14,30 @@ const PostRankings = (props) => {
         <div className='postRankings__flex'>
           {postRankings.map((rank) => (
             <RankItem
+              addRankings={addRankings}
               key={rank.rankId}
-              emojiItem={rank.rankEmoji}
-              altText={rank.rankName}
+              rankId={rank.rankId}
+              rankEmoji={rank.rankEmoji}
+              rankName={rank.rankName}
+              rankStatus={rank.rankStatus}
             />
           ))}
         </div>
       </div>
-      <RankingBar
-        emojiItem={HotelEmoji}
-        altText='Hotel'
-        rankTitle='Hotels'
-        rankStatus='zzz'
-      />
+      { Object.keys(addRankings).length > 0 && (
+        <RankingBar
+          rankEmoji={addRankings.rankEmoji}
+          rankName={addRankings.rankName}
+          rankStatus={addRankings.rankStatus}
+        />
+      )}
     </>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    addRankings: state.post.addRankings,
+  };
+};
+export default connect(mapStateToProps, null)(PostRankings);
 
-export default PostRankings;

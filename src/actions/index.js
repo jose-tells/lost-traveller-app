@@ -12,3 +12,8 @@ export const getPostSource = (payload) => ({
   type: 'GET_POST_SOURCE',
   payload,
 });
+
+export const addingRanking = (payload) => ({
+  type: 'ADDING_RANKING',
+  payload,
+});
