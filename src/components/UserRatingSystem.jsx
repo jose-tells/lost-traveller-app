@@ -1,10 +1,12 @@
 import React from 'react';
+//redux
+import { connect } from 'react-redux';
 // Components
 import RankItem from './RankItem';
 import RankingBar from './RankingBar';
 
 const UserRatingSystem = (props) => {
-  const { postRankings } = props;
+const { postRankings } = props;
 
   return (
     <>
@@ -29,5 +31,9 @@ const UserRatingSystem = (props) => {
     </>
   );
 };
-
-export default UserRatingSystem;
+const mapStateToProps = (state) => {
+  return {
+    addRankings: state.post.addRankings,
+  };
+};
+export default connect(mapStateToProps, null)(UserRatingSystem);
