@@ -1,12 +1,12 @@
 import React from 'react';
+//redux
+import { connect } from 'react-redux';
 // Components
 import RankItem from './RankItem';
 import RankingBar from './RankingBar';
 
 const UserRatingSystem = (props) => {
-  const { postRankings } = props;
-
-  const HotelEmoji = 'https://img.icons8.com/emoji/48/000000/hotel-emoji.png';
+  const { postRankings, addRankings } = props;
 
   return (
     <>
@@ -22,15 +22,19 @@ const UserRatingSystem = (props) => {
           ))}
         </div>
       </div>
-      <RankingBar
-        emojiItem={HotelEmoji}
-        rankName='Hotel'
-        rankStatus={20}
-        isRating
-        rankTitle='Hotels'
-      />
+      {Object.keys(addRankings).length > 0 && (
+        <RankingBar
+          rankEmoji={addRankings.rankEmoji}
+          rankName={addRankings.rankName}
+          isRating
+        />
+      )}
     </>
   );
 };
-
-export default UserRatingSystem;
+const mapStateToProps = (state) => {
+  return {
+    addRankings: state.post.addRankings,
+  };
+};
+export default connect(mapStateToProps, null)(UserRatingSystem);
