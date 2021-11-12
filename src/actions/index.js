@@ -13,7 +13,12 @@ export const getPostSource = (payload) => ({
   payload,
 });
 
-export const addingRanking = (payload) => ({
+export const addRanking = (payload) => ({
   type: 'ADDING_RANKING',
+  payload,
+});
+
+export const removeRanking = (payload) => ({
+  type: 'REMOVE_RANKING',
   payload,
 });

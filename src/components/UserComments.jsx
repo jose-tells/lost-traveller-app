@@ -11,6 +11,7 @@ const UserComments = (props) => {
         userComments.map((comment) => (
           <UserCommentLayout
             key={comment.id}
+            commentPostId={comment.postId}
             comment={comment.content}
             profilePhoto={comment.user.photo}
             username={comment.user.username}

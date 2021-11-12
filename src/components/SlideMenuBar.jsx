@@ -3,10 +3,17 @@ import { Link } from 'react-router-dom';
 // FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faYoutube, faDiscord, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import classNames from 'classnames';
 
-const SlideMenuBar = () => {
+const SlideMenuBar = (props) => {
+  const { isOpen } = props;
+
+  const slideMenuBarStyles = classNames('slideMenuBar__container', {
+    isOpen,
+  });
+
   return (
-    <div className='slideMenuBar__container'>
+    <div className={slideMenuBarStyles}>
       <Link to='/' className='slideMenuBar__links'>Menu</Link>
       <Link to='/' className='slideMenuBar__links'>Places</Link>
       <Link to='/' className='slideMenuBar__links'>About</Link>

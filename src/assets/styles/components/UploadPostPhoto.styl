@@ -4,7 +4,7 @@
   align-items center
   min-width 375px
   height 155px
-  .uploadPostPhoto__photo
+  .uploadPostPhoto__photoContainer
     width 95%
     height 130px
     display flex
@@ -12,8 +12,12 @@
     align-items center
     background #c2c2c2
     border-radius 20px
+    overflow hidden
+    .uploadPostPhoto__photoContainer--photo
+      width 100%
 
 .uploadPostPhoto__form
+  position absolute
   display flex
   width fit-content
   flex-direction column
