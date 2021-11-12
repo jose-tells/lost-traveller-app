@@ -3,9 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // Components
 import LocationItem from './LocationItem';
-//styles
-import '../assets/styles/Components/GridPlaces.styl';
-//Media
+// Media
 import sanBlas from '../assets/img/san-BlasH.jpg';
 
 const GridLocations = (props) => {

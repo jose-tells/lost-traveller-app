@@ -23,9 +23,10 @@
       "comments": [
         {
           "id": "1",
+          "postId": 2345,
           "user": {
             "id": "1",
-            "username": "jony_xd",
+            "username": "jose_tells",
             "photo": ""
           },
           "content": "Try to find all easter eggs!",
@@ -35,6 +36,7 @@
         },
         {
           "id": 2,
+          "postId": 2346,
           "user": {
             "id": 6,
             "username": "jose_tells",
@@ -104,27 +106,28 @@
           "rankId": 1,
           "rankName": "Security",
           "rankEmoji": "https://img.icons8.com/emoji/48/000000/woman-police-officer.png",
-          "rankStatus": "20"
+          "rankStatus": "80"
         },
         {
           "rankId": 2,
           "rankName": "Beaches",
           "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png",
-          "rankStatus": "50"
+          "rankStatus": "30"
         },
         {
           "rankId": 3,
           "rankName": "Cleanly",
           "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png",
-          "rankStatus": "0"
+          "rankStatus": "74"
         },
         {
           "rankId": 4,
           "rankName": "Hotels",
           "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png",
-          "rankStatus": "20"
+          "rankStatus": "100"
         }
       ],
+      "review": "So this is Costa del este, it's not wow, but is good, there are places to hang out and to exercise, evenly.",
       "comments": [
         {
           "id": 1,
@@ -143,7 +146,7 @@
                 "username": "jony_xd",
                 "photo": ""
               },
-              "content": "Hi!",
+              "content": "Hello!",
               "date": "1/10/2021"
             },
             {
@@ -155,15 +158,27 @@
               },
               "content": "Xopaa!",
               "date": "1/10/2021"
-            },
+            }
+          ]
+        },
+        {
+          "id": 2345,
+          "user": {
+            "id": 6,
+            "username": "jose_tells",
+            "photo": ""
+          },
+          "content": "Costa del Este is great, just look at the sky and see those birds!",
+          "date": "1/10/2021",
+          "replies": [
             {
-              "id": 4,
+              "id": 2,
               "user": {
                 "id": "1",
                 "username": "jony_xd",
                 "photo": ""
               },
-              "content": "It's fine!",
+              "content": "Meh, the girls are much better!",
               "date": "1/10/2021"
             }
           ]
@@ -228,30 +243,13 @@
           "rankStatus": "20"
         },
         {
-          "rankId": 2,
-          "rankName": "Beaches",
-          "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png",
-          "rankStatus": "50"
-        },
-        {
-          "rankId": 3,
-          "rankName": "Cleanly",
-          "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png",
-          "rankStatus": "0"
-        },
-        {
-          "rankId": 4,
-          "rankName": "Hotels",
-          "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png",
-          "rankStatus": "20"
-        },
-        {
           "rankId": 5,
           "rankName": "Accessibility",
           "rankEmoji": "https://img.icons8.com/emoji/48/000000/motorway.png",
           "rankStatus": "20"
         }
       ],
+      "review": "San blas, oh San blas and them clearly waters, are just amazing!",
       "comments": [
         {
           "id": 1,
@@ -260,7 +258,7 @@
             "username": "jose_tells",
             "photo": ""
           },
-          "content": "Hi!!!!",
+          "content": "Yeah bro, but you just only saw the beaches?",
           "date": "1/10/2021",
           "replies": [
             {
@@ -270,74 +268,12 @@
                 "username": "jony_xd",
                 "photo": ""
               },
-              "content": "Hi!",
-              "date": "1/10/2021"
-            },
-            {
-              "id": 3,
-              "user": {
-                "id": "1",
-                "username": "jony_xd",
-                "photo": ""
-              },
-              "content": "Xopaa!",
-              "date": "1/10/2021"
-            },
-            {
-              "id": 4,
-              "user": {
-                "id": "1",
-                "username": "jony_xd",
-                "photo": ""
-              },
-              "content": "It's fine!",
+              "content": "yeah, why?",
               "date": "1/10/2021"
             }
           ]
         }
       ]
-    }
-  ],
-  "comments": [
-    {
-      "id": "1",
-      "user": {
-        "id": "1",
-        "username": "jony_xd",
-        "photo": ""
-      },
-      "content": "Try to find all easter eggs!",
-      "inResponse": "",
-      "leadComment": true,
-      "date": "1/10/2021"
-    },
-    {
-      "id": 2,
-      "user": {
-        "id": 6,
-        "username": "jose_tells",
-        "photo": ""
-      },
-      "content": "This is fine, I'll try that",
-      "commentTo": {
-        "id": 1,
-        "content": "Try to find all easter eggs!",
-        "date": "1/10/2021"
-      },
-      "inResponse": true,
-      "leadComment": false,
-      "date": "1/10/2021"
-    }
-  ],
-  "places": [
-    {
-      "id": 1,
-      "placeName": "San Blas",
-      "province": "Guna Yala",
-      "photo": "",
-      "reviews": [],
-      "rankings": [],
-      "top": true
     }
   ],
   "rankings": [

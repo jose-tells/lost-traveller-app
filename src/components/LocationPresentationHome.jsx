@@ -16,8 +16,6 @@ const LocationPresentationHome = (props) => {
     setOpenFilter(!openFilter);
   };
 
-  console.log(filterRanks);
-
   return (
     <main className='lostLocations__container'>
       <div className='lostLocations__title--container'>

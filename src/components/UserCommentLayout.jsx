@@ -7,7 +7,7 @@ import UserPhoto from './UserPhoto';
 import CommentResponsesLayout from './CommentResponsesLayout';
 
 const UserCommentLayout = (props) => {
-  const { comment, profilePhoto, replies, username, isProfile, isForum } = props;
+  const { comment, commentPostId, profilePhoto, replies, username, isProfile, isForum } = props;
 
   const userCommentsLayoutContainerStyles = classNames('userCommentLayout__container', {
     isForum,
@@ -31,7 +31,7 @@ const UserCommentLayout = (props) => {
           />
         ))}
       </div>
-      {isProfile && <Link to='/posts#forum' className='userCommentLayout__commentLink'>View the entire discussion</Link>}
+      {isProfile && <Link to={`/post/${commentPostId}#forum`} className='userCommentLayout__commentLink'>View the entire discussion</Link>}
     </div>
   );
 };

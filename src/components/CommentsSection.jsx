@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // Redux
 import { connect } from 'react-redux';
 // Classnames
@@ -9,19 +10,10 @@ import ForumSection from './ForumSection';
 
 const CommentsSection = (props) => {
 
-  const { post, user, section, setSection, isContribution, isForum, setContribution, setForum } = props;
+  const { location, postComments, postId, user } = props;
 
-  const handleContribution = () => {
-    setSection('Contribution');
-    setContribution(true);
-    setForum(false);
-  };
-
-  const handleForum = () => {
-    setSection('Forum');
-    setContribution(false);
-    setForum(true);
-  };
+  const isContribution = location.hash === '#contribution';
+  const isForum = location.hash === '#forum';
 
   const itemStyles = classNames('commentsSection__item', {
     isContribution,
@@ -34,10 +26,31 @@ const CommentsSection = (props) => {
   return (
     <>
       <div className='commentsSection__container'>
-        <h1 className={itemStyles} onClick={handleContribution}>Contribution</h1>
-        <h1 className={forumStyles} onClick={handleForum}>Forum</h1>
+        <Link
+          to={{
+            pathname: postId,
+            hash: '#contribution',
+          }}
+          className={itemStyles}
+        >
+          Contribution
+        </Link>
+        <Link
+          to={{
+            pathname: postId,
+            hash: '#forum',
+          }}
+          className={forumStyles}
+        >
+          Forum
+        </Link>
       </div>
-      {section.toLowerCase() === 'forum' ? <ForumSection user={user} postComments={post.comments} /> : <ContributionSection user={user} /> }
+      {location.hash === '#forum' ? (
+        <ForumSection
+          user={user}
+          postComments={postComments}
+        />
+      ) : <ContributionSection user={user} />}
     </>
   );
 };

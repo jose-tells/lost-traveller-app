@@ -28,6 +28,14 @@ const reducer = (state, action) => {
           addRankings: action.payload,
         },
       };
+    case 'REMOVE_RANKING':
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          addRankings: action.payload,
+        },
+      };
     default:
       return state;
   };

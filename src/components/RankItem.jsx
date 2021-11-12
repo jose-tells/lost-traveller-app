@@ -3,12 +3,13 @@ import React from 'react';
 // Redux
 import { connect } from 'react-redux';
 // Actions
-import { addingRanking, removeFilterRank } from '../actions';
+import { addRanking, removeFilterRank } from '../actions';
 
 const RankItem = (props) => {
-  const { rankEmoji, rankName, rankId, rankStatus, addingRanking, removeFilterRank, isFilter } = props;
+  const { rankId, rankEmoji, rankName, rankStatus, addRanking, removeFilterRank, isFilter } = props;
+
   const handleAddingRanking = () => {
-    addingRanking({ rankId, rankName, rankEmoji, rankStatus });
+    addRanking({ rankId, rankName, rankEmoji, rankStatus });
   };
 
   const handleClick = () => {
@@ -17,14 +18,20 @@ const RankItem = (props) => {
 
   return (
     <button type='button' className='postRanking__item' onClick={isFilter ? handleClick : handleAddingRanking}>
-      {isFilter && <div className='postRanking__item--close'>x</div>}
+      {isFilter && (
+        <div className='postRanking__close--container'>
+          <h1 className='postRanking__item--close'>
+            X
+          </h1>
+        </div>
+      )}
       <img className='postRanking__item--emoji' src={rankEmoji} alt={rankName} />
     </button>
   );
 };
 
 const mapDispatchToProps = {
-  addingRanking,
+  addRanking,
   removeFilterRank,
 };
 export default connect(null, mapDispatchToProps)(RankItem);

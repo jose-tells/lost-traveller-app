@@ -30,9 +30,9 @@ const MenuNav = () => {
           <Link to='/' className='menuNav__logo--container'>
             <img src={travelLogo} className='menuNav__logo' alt='The Lost Traveller Logo' />
           </Link>
-          <HamburgerMenu isOpen={isOpen} handleDisplayMenu={handleDisplayMenu} />
+          <HamburgerMenu isOpen={isOpen} isScrolled={isScrolled} handleDisplayMenu={handleDisplayMenu} />
         </div>
-        <SlideMenuBar />
+        <SlideMenuBar isOpen={isOpen} handleDisplayMenu={handleDisplayMenu} />
       </nav>
     </>
   );

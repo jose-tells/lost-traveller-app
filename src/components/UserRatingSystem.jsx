@@ -6,8 +6,6 @@ import RankingBar from './RankingBar';
 const UserRatingSystem = (props) => {
   const { postRankings } = props;
 
-  const HotelEmoji = 'https://img.icons8.com/emoji/48/000000/hotel-emoji.png';
-
   return (
     <>
       <h1 className='postUserRatingSystem__title'>With your experience, how would you rate this place?</h1>
@@ -23,11 +21,10 @@ const UserRatingSystem = (props) => {
         </div>
       </div>
       <RankingBar
-        emojiItem={HotelEmoji}
-        rankName='Hotel'
-        rankStatus={20}
+        rankName={postRankings.rankName}
+        rankEmoji={postRankings.rankEmoji}
+        rankStatus={postRankings.rankStatus}
         isRating
-        rankTitle='Hotels'
       />
     </>
   );

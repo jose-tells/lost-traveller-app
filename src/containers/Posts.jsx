@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect } from 'react';
 // Redux
 import { connect } from 'react-redux';
 // Actions
@@ -18,17 +18,13 @@ import Footer from '../components/Footer';
 import '../assets/styles/Posts.styl';
 
 const Posts = (props) => {
-  const { post, history, match } = props;
+  const { post, history, match, location } = props;
 
   const { id } = match.params;
 
   useLayoutEffect(() => {
     props.getPostSource(id);
   }, []);
-
-  const [section, setSection] = useState('Contribution');
-  const [isContribution, setContribution] = useState(true);
-  const [isForum, setForum] = useState(false);
 
   return Object.keys(post).length > 0 ? (
     <>
@@ -45,22 +41,14 @@ const Posts = (props) => {
         userCreatorVerified={post.userCreator.verified}
         usersContributors={post.usersContributors}
       />
-      <PostMenu
-        setContribution={setContribution}
-        setForum={setForum}
-        setSection={setSection}
-      />
+      <PostMenu />
       <PostRankings postRankings={post.rankings} />
-      <PostReview />
+      <PostReview postReview={post.review} />
       <UserRatingSystem postRankings={post.rankings} />
       <CommentsSection
-        post={post}
-        section={section}
-        setContribution={setContribution}
-        setForum={setForum}
-        setSection={setSection}
-        isContribution={isContribution}
-        isForum={isForum}
+        postId={id}
+        location={location}
+        postComments={post.comments}
       />
       <Footer />
     </>
