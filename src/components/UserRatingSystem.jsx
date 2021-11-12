@@ -6,7 +6,9 @@ import RankItem from './RankItem';
 import RankingBar from './RankingBar';
 
 const UserRatingSystem = (props) => {
-const { postRankings } = props;
+  const { postRankings, addRankings } = props;
+
+  const hasRanking = Object.keys(addRankings).length > 0;
 
   return (
     <>
@@ -22,12 +24,14 @@ const { postRankings } = props;
           ))}
         </div>
       </div>
-      <RankingBar
-        rankName={postRankings.rankName}
-        rankEmoji={postRankings.rankEmoji}
-        rankStatus={postRankings.rankStatus}
-        isRating
-      />
+      {hasRanking && (
+        <RankingBar
+          rankName={addRankings.rankName}
+          rankEmoji={addRankings.rankEmoji}
+          rankStatus={addRankings.rankStatus}
+          isRating
+        />
+      )}
     </>
   );
 };
