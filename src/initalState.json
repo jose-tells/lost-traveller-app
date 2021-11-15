@@ -7,7 +7,48 @@
     "profilePhoto": "",
     "verified": true,
     "contributions": {
-      "posts": [],
+      "posts": [
+        {
+          "id": 2345,
+          "name": "Costa del Este",
+          "province": "Panama",
+          "photo": "",
+          "comments": [
+            {
+              "id": 1,
+              "user": {
+                "id": 6,
+                "username": "jose_tells",
+                "photo": ""
+              },
+              "content": "Hi!!!!",
+              "date": "1/10/2021",
+              "replies": [
+                {
+                  "id": 2,
+                  "user": {
+                    "id": "1",
+                    "username": "jony_xd",
+                    "photo": ""
+                  },
+                  "content": "Hello!",
+                  "date": "1/10/2021"
+                },
+                {
+                  "id": 3,
+                  "user": {
+                    "id": "1",
+                    "username": "jony_xd",
+                    "photo": ""
+                  },
+                  "content": "Xopaa!",
+                  "date": "1/10/2021"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "photos": [
         {
           "id": "1",
@@ -22,7 +63,7 @@
       ],
       "comments": [
         {
-          "id": "1",
+          "id": 1,
           "postId": 2345,
           "user": {
             "id": "1",
@@ -38,23 +79,34 @@
           "id": 2,
           "postId": 2346,
           "user": {
-            "id": 6,
+            "id": 1,
             "username": "jose_tells",
             "photo": ""
           },
-          "content": "This is fine, I'll try that",
-          "commentTo": {
-            "id": 1,
-            "content": "Try to find all easter eggs!",
-            "date": "1/10/2021"
-          },
+          "content": "Hell yeah!",
           "inResponse": true,
-          "leadComment": false,
+          "leadComment": "",
           "date": "1/10/2021"
         }
       ]
     }
   },
+  "userRequest": {},
+  "users": [
+    {
+      "id": 5877,
+      "firstName": "Agustín",
+      "lastName": "Vergara",
+      "username": "agus_69",
+      "profilePhoto": "",
+      "verified": false,
+      "contributions": {
+        "posts": [],
+        "photos": [],
+        "comments": []
+      }
+    }
+  ],
   "post": {},
   "posts": [
     {

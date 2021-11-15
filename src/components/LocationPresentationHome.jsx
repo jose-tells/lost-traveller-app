@@ -8,7 +8,7 @@ import RankItem from './RankItem';
 import GridLocations from './GridLocations';
 
 const LocationPresentationHome = (props) => {
-  const { filterRanks } = props;
+  const { posts, filterRanks } = props;
 
   const [openFilter, setOpenFilter] = useState(false);
 
@@ -42,13 +42,14 @@ const LocationPresentationHome = (props) => {
           ))}
         </div>
       )}
-      <GridLocations />
+      <GridLocations posts={posts} />
     </main>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
+    posts: state.posts,
     filterRanks: state.filterRanks,
   };
 };

@@ -1,8 +1,8 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 // Redux
 import { connect } from 'react-redux';
 // Actions
-import { getPostSource } from '../actions';
+import { getPostSource, cleanPreview, createPost } from '../actions';
 // Pages
 import NotFound from './NotFound';
 //Components
@@ -18,12 +18,19 @@ import Footer from '../components/Footer';
 import '../assets/styles/Posts.styl';
 
 const Posts = (props) => {
-  const { post, history, match, location } = props;
+  const { post, history, match, location, createPost, cleanPreview, getPostSource } = props;
 
   const { id } = match.params;
 
   useLayoutEffect(() => {
-    props.getPostSource(id);
+    getPostSource(id);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      cleanPreview();
+      createPost({});
+    };
   }, []);
 
   return Object.keys(post).length > 0 ? (
@@ -65,6 +72,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getPostSource,
+  cleanPreview,
+  createPost,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

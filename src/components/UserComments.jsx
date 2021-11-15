@@ -6,7 +6,7 @@ const UserComments = (props) => {
   const { userComments, isProfile } = props;
 
   return (
-    <section className='userComments__container'>
+    <section id='comments' className='userComments__container'>
       {
         userComments.map((comment) => (
           <UserCommentLayout

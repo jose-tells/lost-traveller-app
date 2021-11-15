@@ -12,7 +12,7 @@ const CommentsSection = (props) => {
 
   const { location, postComments, postId, user } = props;
 
-  const isContribution = location.hash === '#contribution';
+  const isContribution = location.hash === '#contribution' || location.hash === '';
   const isForum = location.hash === '#forum';
 
   const itemStyles = classNames('commentsSection__item', {

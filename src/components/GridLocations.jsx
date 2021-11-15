@@ -1,6 +1,4 @@
 import React from 'react';
-// Redux
-import { connect } from 'react-redux';
 // Components
 import LocationItem from './LocationItem';
 // Media
@@ -17,7 +15,11 @@ const GridLocations = (props) => {
           posts.map((post) => (
             <LocationItem
               key={post.id}
-              postInfo={post}
+              postId={post.id}
+              postName={post.name}
+              postProvince={post.province}
+              postCommentsLength={post.comments.length}
+              // postPhoto={post.photo}
               postPhoto={sanBlas}
             />
           ))
@@ -27,10 +29,4 @@ const GridLocations = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts,
-  };
-};
-
-export default connect(mapStateToProps, null)(GridLocations);
+export default GridLocations;

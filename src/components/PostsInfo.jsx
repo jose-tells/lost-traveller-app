@@ -41,28 +41,30 @@ const PostInfo = (props) => {
               {userCreatorName}
             </p>
           </div>
-          <div className='postInfo__contributors'>
-            <div className='postInfo__contributors--profiles'>
-              <UserPhoto firstPhoto profilePhoto={usersContributors[0].photo} username={usersContributors[0].username} />
-              <UserPhoto secondPhoto profilePhoto={usersContributors[1].photo} username={usersContributors[1].username} />
-              <UserPhoto thirdPhoto profilePhoto={usersContributors[2].photo} username={usersContributors[2].username} />
-              <UserPhoto profilePhoto={usersContributors[3].photo} username={usersContributors[3].username} />
+          { usersContributors.length > 0 && (
+            <div className='postInfo__contributors'>
+              <div className='postInfo__contributors--profiles'>
+                <UserPhoto firstPhoto profilePhoto={usersContributors[0].photo} username={usersContributors[0].username} />
+                <UserPhoto secondPhoto profilePhoto={usersContributors[1].photo} username={usersContributors[1].username} />
+                <UserPhoto thirdPhoto profilePhoto={usersContributors[2].photo} username={usersContributors[2].username} />
+                <UserPhoto profilePhoto={usersContributors[3].photo} username={usersContributors[3].username} />
+              </div>
+              <p className='postInfo__contributors--names'>
+                Commented by
+                {' '}
+                {usersContributors[0].name}
+                ,
+                {' '}
+                {usersContributors[1].name}
+                {' '}
+                +
+                {' '}
+                {usersContributors.length}
+                {' '}
+                more
+              </p>
             </div>
-            <p className='postInfo__contributors--names'>
-              Commented by
-              {' '}
-              {usersContributors[0].name}
-              ,
-              {' '}
-              {usersContributors[1].name}
-              {' '}
-              +
-              {' '}
-              {usersContributors.length}
-              {' '}
-              more
-            </p>
-          </div>
+          )}
         </div>
       </div>
     </>

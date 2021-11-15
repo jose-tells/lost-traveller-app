@@ -36,6 +36,29 @@ const reducer = (state, action) => {
           addRankings: action.payload,
         },
       };
+    case 'GET_USER':
+      return {
+        ...state,
+        userRequest: state.users.find((user) => (user.id === Number(action.payload))) || [],
+      };
+    case 'CREATE_POST':
+      return {
+        ...state,
+        post: action.payload,
+      };
+    case 'CREATE_PREVIEW':
+      return {
+        ...state,
+        posts: [
+          ...state.posts,
+          action.payload,
+        ],
+      };
+    case 'CLEAN_PREVIEW':
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== 1),
+      };
     default:
       return state;
   };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // Redux
 import { connect } from 'react-redux';
 // Components
@@ -7,21 +7,28 @@ import UserProfileSections from '../components/UserProfileSections';
 import CreatePostButton from '../components/CreatePostButton';
 import UserPhotosGrid from '../components/UserPhotosGrid';
 import UserComments from '../components/UserComments';
+import GridLocations from '../components/GridLocations';
 // Styles
 import '../assets/styles/UserProfile.styl';
 
 const UserProfile = (props) => {
-  const { user } = props;
-
-  const [userSection, setUserSection] = useState('Posts');
+  const { user, location } = props;
 
   return (
     <>
       <UserProfileHeader user={user} />
-      <UserProfileSections user={user} setUserSection={setUserSection} />
+      <UserProfileSections user={user} />
       <CreatePostButton />
-      {userSection.includes('Photos') && <UserPhotosGrid userPhotos={user.contributions.photos} />}
-      {userSection.includes('Comments') && <UserComments userComments={user.contributions.comments} isProfile />}
+      {
+        location.hash === '#photos' ? <UserPhotosGrid userPhotos={user.contributions.photos} /> :
+          location.hash === '#comments' ? (
+            <UserComments
+              userComments={user.contributions.comments}
+              isProfile
+            />
+          ) : <GridLocations posts={user.contributions.posts} />
+      }
+
     </>
   );
 };

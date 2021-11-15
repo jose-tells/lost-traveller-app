@@ -7,7 +7,7 @@ const UserPhotosGrid = (props) => {
 
   return (
     <>
-      <section className='userPhotosGrid__container'>
+      <section id='photos' className='userPhotosGrid__container'>
         {
           userPhotos.map((photo) => (
             <PhotoLayout

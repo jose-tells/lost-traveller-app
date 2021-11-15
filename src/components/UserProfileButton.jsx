@@ -1,23 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const UserProfileButton = (props) => {
-  const { buttonName, itemsLength, setUserSection } = props;
-
-  const handleClick = () => {
-    setUserSection(buttonName);
-  };
+  const { buttonName, itemsLength, pathname, isMain } = props;
 
   return (
     <div className='UserProfileSections__userProfileButton'>
-      <button
+      <Link
+        to={{
+          pathname,
+          hash: isMain ? false : buttonName.toLowerCase(),
+        }}
         className='UserProfileSections__userProfileButton--button'
-        onClick={handleClick}
         type='button'
       >
         {itemsLength}
         <br />
         {buttonName}
-      </button>
+      </Link>
     </div>
   );
 };
