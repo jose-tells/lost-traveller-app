@@ -17,7 +17,7 @@ const LocationPresentationHome = (props) => {
   };
 
   return (
-    <main className='lostLocations__container'>
+    <main className='lostLocations__container' id='places'>
       <div className='lostLocations__title--container'>
         <h1 className='lostLocations__title'>
           The Lost Locations

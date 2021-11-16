@@ -1,6 +1,23 @@
 {
-  "user": {
-    "id": 1,
+  "user": {},
+  "createUser":{},
+  "userRequest": {},
+  "users": [
+    {
+      "id": 5877,
+      "firstName": "Agustín",
+      "lastName": "Vergara",
+      "username": "agus_69",
+      "profilePhoto": "",
+      "verified": false,
+      "contributions": {
+        "posts": [],
+        "photos": [],
+        "comments": []
+      }
+    },
+    {
+    "id": 6969,
     "firstName": "José",
     "lastName": "Marquínez",
     "username": "jose_tells",
@@ -90,21 +107,6 @@
         }
       ]
     }
-  },
-  "userRequest": {},
-  "users": [
-    {
-      "id": 5877,
-      "firstName": "Agustín",
-      "lastName": "Vergara",
-      "username": "agus_69",
-      "profilePhoto": "",
-      "verified": false,
-      "contributions": {
-        "posts": [],
-        "photos": [],
-        "comments": []
-      }
     }
   ],
   "post": {},

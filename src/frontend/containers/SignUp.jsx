@@ -5,11 +5,12 @@ import SignUpWrapper from '../components/SignUpWrapper';
 // Styles
 import '../assets/styles/SignUp.styl';
 
-const SingUp = () => {
+const SingUp = (props) => {
+  const { history } = props;
   return (
     <>
       <MenuNav />
-      <SignUpWrapper />
+      <SignUpWrapper history={history} />
     </>
   );
 };

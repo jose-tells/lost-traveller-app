@@ -59,6 +59,16 @@ const reducer = (state, action) => {
         ...state,
         posts: state.posts.filter((post) => post.id !== 1),
       };
+    case 'SING_IN_USER':
+      return {
+        ...state,
+        user: state.users.find((user) => (user.username === action.payload)) || {},
+      };
+    case 'SING_UP_USER':
+      return {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   };

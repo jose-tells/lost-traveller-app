@@ -42,3 +42,11 @@ export const cleanPreview = (payload) => ({
   type: 'CLEAN_PREVIEW',
   payload,
 });
+export const singInUser = (payload) => ({
+  type: 'SING_IN_USER',
+  payload,
+});
+export const singUpUser = (payload) => ({
+  type: 'SING_UP_USER',
+  payload,
+});

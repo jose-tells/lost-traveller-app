@@ -6,7 +6,6 @@ import photo1 from '../assets/img/PerfilPhoto.jpg';
 
 const UserProfileHeader = (props) => {
   const { user } = props;
-
   return (
     <header className='userProfileHeader__container'>
       <div className='userProfileHeader__photoContainer'>

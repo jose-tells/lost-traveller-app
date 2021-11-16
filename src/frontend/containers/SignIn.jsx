@@ -5,11 +5,12 @@ import SignInWrapper from '../components/SignInWrapper';
 //styles
 import '../assets/styles/SignIn.styl';
 
-function SignIn() {
+function SignIn(props) {
+  const { history } = props;
   return (
     <>
       <MenuNav />
-      <SignInWrapper />
+      <SignInWrapper history={history} />
     </>
   );
 }

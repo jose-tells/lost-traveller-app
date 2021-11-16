@@ -6,7 +6,10 @@ import { faInstagram, faYoutube, faDiscord, faTwitter } from '@fortawesome/free-
 import classNames from 'classnames';
 
 const SlideMenuBar = (props) => {
-  const { isOpen } = props;
+  const { isOpen, handleDisplayMenu } = props;
+  const handleClick = () => {
+    handleDisplayMenu(false);
+  };
 
   const slideMenuBarStyles = classNames('slideMenuBar__container', {
     isOpen,
@@ -14,10 +17,30 @@ const SlideMenuBar = (props) => {
 
   return (
     <div className={slideMenuBarStyles}>
-      <Link to='/' className='slideMenuBar__links'>Menu</Link>
-      <Link to='/' className='slideMenuBar__links'>Places</Link>
-      <Link to='/' className='slideMenuBar__links'>About</Link>
-      <Link to='/' className='slideMenuBar__links'>Contact</Link>
+      <Link
+        to='/'
+        className='slideMenuBar__links'
+        onClick={handleClick}
+      >
+        Menu
+      </Link>
+      <a
+        href='#places'
+        className='slideMenuBar__links'
+        onClick={handleClick}
+      >
+        Places
+      </a>
+      <Link
+        to='/profile'
+        className='slideMenuBar__links'
+        onClick={handleClick}
+      >
+        Profile
+      </Link>
+      <Link to='/' className='slideMenuBar__links' onClick={handleDisplayMenu}>
+        Contact
+      </Link>
       <div className='slideMenuBar__icon--container'>
         <Link to='https://www.instagram.com/projectconquestt/'>
           <FontAwesomeIcon icon={faInstagram} className='slideMenuBar__icon--item' />
