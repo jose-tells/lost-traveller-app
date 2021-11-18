@@ -21,7 +21,7 @@ const MenuNav = () => {
     isOpen,
   });
 
-  useScroll(({ xy: [, y] }) => { setState(y > 1); }, { target: window });
+  // useScroll(({ xy: [, y] }) => { setState(y > 1); }, { target: document });
 
   return (
     <>

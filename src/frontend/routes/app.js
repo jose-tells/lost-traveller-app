@@ -17,7 +17,7 @@ const App = () => (
       <Route exact path='/post/:id' component={Posts} />
       <Route exact path='/signin' component={SignIn} />
       <Route exact path='/signup' component={SignUp} />
-      <Route exact path='/profile/' component={UserProfile} />
+      <Route exact path='/profile' component={UserProfile} />
       <Route exact path='/user/:userId' component={UserProfileRequest} />
       <Route exact path='/upload' component={UploadPosts} />
       <Route component={NotFound} />

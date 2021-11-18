@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // Redux
 import { connect } from 'react-redux';
 // Actions
@@ -13,19 +13,44 @@ import UserComments from '../components/UserComments';
 import GridLocations from '../components/GridLocations';
 // Styles
 import '../assets/styles/UserProfile.styl';
+import Loader from './Loader';
 
 const UserProfileRequest = (props) => {
   const { userRequest, location, match, getUser } = props;
-
-  const { userId } = match.params;
-
-  console.log(location);
+  const [loader, setLoader] = useState({
+    loading: true,
+    error: null,
+    data: undefined,
+  });
 
   const hasUser = Object.keys(userRequest).length > 0;
 
-  useLayoutEffect(() => {
-    getUser(userId);
+  const { userId } = match.params;
+
+  const fetchData = async () => {
+    setLoader({
+      loading: true,
+      error: null,
+    });
+    try {
+      const data = await getUser(userId);;
+      setLoader({ loading: false, data });
+    } catch (err) {
+      setLoader({ loading: false, error: true });
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
+
+  if (loader.loading === true && !loader.data) {
+    <Loader />;
+  }
+
+  if (loader.loading === false && loader.error === true) {
+    <NotFound />;
+  }
 
   return hasUser ? (
     <>

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // Redux
 import { connect } from 'react-redux';
 // Actions
@@ -14,26 +14,49 @@ import UserRatingSystem from '../components/UserRatingSystem';
 import CommentsSection from '../components/CommentsSection';
 import SwipingBar from '../components/SwipingBar';
 import Footer from '../components/Footer';
+import Loader from './Loader';
 // Styles
 import '../assets/styles/Posts.styl';
 
 const Posts = (props) => {
   const { post, history, match, location, createPost, cleanPreview, getPostSource } = props;
-
+  const [loader, setLoader] = useState({
+    loading: true,
+    error: null,
+    data: undefined,
+  });
   const { id } = match.params;
 
-  useLayoutEffect(() => {
-    getPostSource(id);
-  }, []);
+  const fetchData = async () => {
+    setLoader({
+      loading: true,
+      error: null,
+    });
+    try {
+      const data = await getPostSource(id);
+      setLoader({ loading: false, data });
+    } catch (err) {
+      setLoader({ loading: false, error: true });
+    }
+  };
 
   useEffect(() => {
+    fetchData();
     return () => {
       cleanPreview();
       createPost({});
     };
   }, []);
 
-  return Object.keys(post).length > 0 ? (
+  if (loader.loading === true && !loader.data) {
+    return <Loader />;
+  }
+
+  if (loader.loading === false && loader.error === true) {
+    return <NotFound />;
+  }
+
+  return (
     <>
       <SwipingBar />
       <PostsInfo
@@ -59,7 +82,7 @@ const Posts = (props) => {
       />
       <Footer />
     </>
-  ) : <NotFound />;
+  );
 };
 
 const mapStateToProps = (state) => {
