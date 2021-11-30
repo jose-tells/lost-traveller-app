@@ -13,7 +13,7 @@ import { createStore } from 'redux';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import helmet from 'helmet';
 import { env, port } from './config/index';
-import initialState from '../frontend/initalState';
+import initialState from '../frontend/initialState.json';
 import reducer from '../frontend/reducers/index';
 import serverRoutes from '../frontend/routes/serverRoutes';
 import getManifest from './getManifest';

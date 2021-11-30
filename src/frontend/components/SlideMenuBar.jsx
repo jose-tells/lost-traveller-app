@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faYoutube, faDiscord, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 
 const SlideMenuBar = (props) => {
-  const { isOpen, handleDisplayMenu } = props;
+  const { isOpen, handleDisplayMenu, user } = props;
+
+  const hasUser = Object.values(user).length > 0;
+
   const handleClick = () => {
     handleDisplayMenu(false);
   };
@@ -31,14 +35,20 @@ const SlideMenuBar = (props) => {
       >
         Places
       </a>
+      {hasUser && (
+        <Link
+          to={`/profile/${user.username}`}
+          className='slideMenuBar__links'
+          onClick={handleClick}
+        >
+          Profile
+        </Link>
+      )}
       <Link
-        to='/profile'
+        to='/'
         className='slideMenuBar__links'
-        onClick={handleClick}
+        onClick={handleDisplayMenu}
       >
-        Profile
-      </Link>
-      <Link to='/' className='slideMenuBar__links' onClick={handleDisplayMenu}>
         Contact
       </Link>
       <div className='slideMenuBar__icon--container'>
@@ -59,4 +69,10 @@ const SlideMenuBar = (props) => {
   );
 };
 
-export default SlideMenuBar;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, null)(SlideMenuBar);

@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // Classnames
 import classNames from 'classnames';
-// Redux
+// React-redux
 import { connect } from 'react-redux';
-// Actions
 import { createPost, createPreview } from '../actions';
 // Components
 import Footer from '../components/Footer';
@@ -27,11 +26,12 @@ const UploadPosts = (props) => {
     province: '',
     averagePrice: '',
     photo: '',
-    weather: '',
-    weatherEmoji: '',
+    weather: {
+      weatherDegree: '',
+      weatherEmoji: [],
+    },
     userCreator: {},
     usersContributors: [],
-    addRankings: {},
     rankings: [],
     review: '',
     comments: [],
@@ -53,7 +53,7 @@ const UploadPosts = (props) => {
   };
 
   const handleInput = (event) => {
-    fileUrl && (infoPost.name && infoPost.province) ? setReview(true) : setReview(false);
+    (fileUrl && infoPost.name && infoPost.province) ? setReview(true) : setReview(false);
     setInputLength(event.target.value.length);
     user.verified && setValues({
       ...infoPost,
@@ -61,10 +61,9 @@ const UploadPosts = (props) => {
       photo: fileUrl,
       userCreator: {
         id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        name: user.firstName,
         username: user.username,
-        profilePhoto: user.profilePhoto,
+        photo: user.profilePhoto,
         verified: user.verified,
       },
     });
@@ -128,6 +127,22 @@ const UploadPosts = (props) => {
               name='province'
               type='text'
               placeholder='e.g. Guna Yala'
+              required
+              onChange={handleInput}
+            />
+          </div>
+          <div className='uploadPostInfo__item--container'>
+            <label htmlFor='provinceName'>
+              <span className='uploadPostInfo__item--label'>
+                Average Price
+              </span>
+            </label>
+            <input
+              className='uploadPostInfo__item--input'
+              id='provinceName'
+              name='averagePrice'
+              type='number'
+              placeholder='e.g. 24'
               required
               onChange={handleInput}
             />

@@ -14,7 +14,12 @@ export const getPostSource = (payload) => ({
 });
 
 export const addRanking = (payload) => ({
-  type: 'ADDING_RANKING',
+  type: 'ADD_RANKING',
+  payload,
+});
+
+export const addRating = (payload) => ({
+  type: 'ADD_RATING',
   payload,
 });
 
@@ -42,11 +47,18 @@ export const cleanPreview = (payload) => ({
   type: 'CLEAN_PREVIEW',
   payload,
 });
+
 export const singInUser = (payload) => ({
   type: 'SING_IN_USER',
   payload,
 });
+
 export const singUpUser = (payload) => ({
   type: 'SING_UP_USER',
+  payload,
+});
+
+export const createComment = (payload) => ({
+  type: 'CREATE_COMMENT',
   payload,
 });

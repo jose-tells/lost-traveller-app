@@ -20,26 +20,25 @@ const reducer = (state, action) => {
         ...state,
         post: state.posts.find((post) => (post.id === Number(action.payload))) || [],
       };
-    case 'ADDING_RANKING':
+    case 'ADD_RANKING':
       return {
         ...state,
-        post: {
-          ...state.post,
-          addRankings: action.payload,
-        },
+        addRankings: action.payload,
+      };
+    case 'ADD_RATING':
+      return {
+        ...state,
+        addRatings: action.payload,
       };
     case 'REMOVE_RANKING':
       return {
         ...state,
-        post: {
-          ...state.post,
-          addRankings: action.payload,
-        },
+        addRankings: action.payload,
       };
     case 'GET_USER':
       return {
         ...state,
-        userRequest: state.users.find((user) => (user.id === Number(action.payload))) || [],
+        userRequest: state.users.find((user) => (user.username === action.payload)) || {},
       };
     case 'CREATE_POST':
       return {
@@ -68,6 +67,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case 'CREATE_COMMENT':
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: [
+            ...state.post.comments,
+            action.payload,
+          ],
+        },
       };
     default:
       return state;

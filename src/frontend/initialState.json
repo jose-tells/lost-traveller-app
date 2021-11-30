@@ -1,0 +1,140 @@
+{
+  "user": {},
+  "userRequest": {},
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Jose",
+      "lastName": "Marquinez",
+      "username": "jose_tells",
+      "profilePhoto": "",
+      "verified": true,
+      "contributions": {
+        "posts": [],
+        "photos": [],
+        "comments": []
+      }
+    },
+    {
+      "id": 2,
+      "firstName": "Jonathan",
+      "lastName": "Vergara",
+      "username": "johny_lifestyle",
+      "profilePhoto": "",
+      "verified": false,
+      "contributions": {
+        "posts": [],
+        "photos": [],
+        "comments": []
+      }
+    }
+  ],
+  "post": {},
+  "posts": [
+    {
+      "id": 2345,
+      "name": "Costa del Este",
+      "province": "Panama",
+      "averagePrice": 24,
+      "photo": "",
+      "weather": {
+        "weatherDegree": 30,
+        "weatherEmoji": [
+          "https://img.icons8.com/emoji/48/000000/sun-emoji.png",
+          "sunny"
+        ]
+      },
+      "userCreator": {
+        "id": 2,
+        "name": "Jonathan",
+        "username": "johny_lifestyle",
+        "photo": "",
+        "verified": true
+      },
+      "usersContributors": [
+        {
+          "id": 1,
+          "name": "Agustín",
+          "username": "agus_02",
+          "photo": ""
+        },
+        {
+          "id": 2,
+          "name": "Jonathan",
+          "username": "jony_xd",
+          "photo": ""
+        },
+        {
+          "id": 3,
+          "name": "José",
+          "username": "jose_tells",
+          "photo": ""
+        },
+        {
+          "id": 4,
+          "name": "David",
+          "username": "dave_32",
+          "photo": ""
+        }
+      ],
+      "rankings": [
+        {
+          "rankId": 1,
+          "rankName": "Security",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/woman-police-officer.png",
+          "rankStatus": "80"
+        },
+        {
+          "rankId": 2,
+          "rankName": "Beaches",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png",
+          "rankStatus": "30"
+        },
+        {
+          "rankId": 3,
+          "rankName": "Cleanly",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png",
+          "rankStatus": "74"
+        },
+        {
+          "rankId": 4,
+          "rankName": "Hotels",
+          "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png",
+          "rankStatus": "100"
+        }
+      ],
+      "review": "So this is Costa del este, it is not wow, but is good, there are places to hang out and to exercise, evenly.",
+      "comments": []
+    }
+  ],
+  "rankings": [
+    {
+      "rankId": 456,
+      "rankName": "Security",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/woman-police-officer.png"
+    },
+    {
+      "rankId": 457,
+      "rankName": "Beaches",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/beach-with-umbrella.png"
+    },
+    {
+      "rankId": 458,
+      "rankName": "Cleanly",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/wastebasket-emoji.png"
+    },
+    {
+      "rankId": 459,
+      "rankName": "Hotels",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/hotel-emoji.png"
+    },
+    {
+      "rankId": 460,
+      "rankName": "top",
+      "rankEmoji": "https://img.icons8.com/emoji/48/000000/top-arrow-emoj.png"
+    }
+  ],
+  "addRankings": {},
+  "addRatings": {},
+  "filterRanks": []
+}

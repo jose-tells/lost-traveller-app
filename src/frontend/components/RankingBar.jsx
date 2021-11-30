@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { removeRanking } from '../actions';
 
 const RankingBar = (props) => {
-  const { rankEmoji, rankName, isRating, rankStatus, removeRanking } = props;
+  const { rankEmoji, rankName, rankStatus, removeRanking, isRating } = props;
 
   const isBad = rankStatus >= 0 && rankStatus < 35;
   const isGood = rankStatus >= 35 && rankStatus < 75;

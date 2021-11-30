@@ -3,13 +3,25 @@ import React from 'react';
 // Redux
 import { connect } from 'react-redux';
 // Actions
-import { addRanking, removeFilterRank } from '../actions';
+import { addRanking, addRating, removeFilterRank } from '../actions';
 
 const RankItem = (props) => {
-  const { rankId, rankEmoji, rankName, rankStatus, addRanking, removeFilterRank, isFilter } = props;
+  const {
+    rankId,
+    rankEmoji,
+    rankName,
+    rankStatus,
+    addRanking,
+    addRating,
+    removeFilterRank,
+    isFilter,
+    isRating,
+  } = props;
 
   const handleAddingRanking = () => {
-    addRanking({ rankId, rankName, rankEmoji, rankStatus });
+    isRating ?
+      addRating({ rankName, rankEmoji }) :
+      addRanking({ rankId, rankName, rankEmoji, rankStatus });
   };
 
   const handleClick = () => {
@@ -32,6 +44,7 @@ const RankItem = (props) => {
 
 const mapDispatchToProps = {
   addRanking,
+  addRating,
   removeFilterRank,
 };
 export default connect(null, mapDispatchToProps)(RankItem);
