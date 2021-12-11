@@ -11,6 +11,7 @@
 .userCommentLayout__userCommentContainer
   display flex
   align-self flex-start
+  width 100%
   .userCommentLayout__commentContainer
     display flex
     justify-content flex-start
@@ -27,6 +28,13 @@
       line-height 2
       font-size mini-text-size
       font-weight 400
+  .userCommentLayout__deleteIcon
+    margin-left 20px
+    align-self center
+    color #c2c2c2
+    transform translateX(-50px)
+    transition all 0.5s
+    z-index -10
 
 .userCommentLayout__responses
   width 100%
@@ -38,8 +46,16 @@
 .userCommentLayout__commentLink
   position absolute
   align-self flex-end
-  transform translateY(-5px)
+  transform translate(-35px, -5px)
   font-size footer-text-size
   font-weight 400
   text-decoration none
   color Icon-blue
+
+.userCommentLayout__deleteIcon.isShow
+  cursor pointer
+  font-size sub-title-size
+  font-weight 300
+  transform translateX(0)
+  z-index 0
+

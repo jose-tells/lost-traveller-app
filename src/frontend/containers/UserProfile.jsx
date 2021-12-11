@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 // Redux
 import { connect } from 'react-redux';
-import { getUser } from '../actions';
+import { getUserRequest } from '../actions';
 // Components
 import UserProfileHeader from '../components/UserProfileHeader';
 import UserProfileSections from '../components/UserProfileSections';
@@ -13,58 +13,54 @@ import Loader from './Loader';
 import NotFound from './NotFound';
 // Styles
 import '../assets/styles/UserProfile.styl';
+import LocationItem from '../components/LocationItem';
 
 const UserProfile = (props) => {
-  const { user, userRequest, location, match, getUser } = props;
+  const { user, userRequest, location, match, getUserRequest } = props;
 
   const hasUser = Object.keys(userRequest).length > 0;
-
-  const [loader, setLoader] = useState({
-    loading: true,
-    error: null,
-    data: undefined,
-  });
+  const noneUser = Object.keys(userRequest).length === 0;
 
   const { username } = match.params;
 
-  const fetchData = async () => {
-    setLoader({
-      loading: true,
-      error: null,
-    });
-    try {
-      const data = await getUser(username);
-      setLoader({ loading: false, data });
-    } catch (err) {
-      setLoader({ loading: false, error: true });
-    }
-  };
-
   useEffect(() => {
-    fetchData();
+    getUserRequest(username);
   }, []);
 
   const isLoggedUser = username === user.username;
 
-  if (loader.loading === true && !loader.data) {
-    <Loader />;
+  if (!hasUser) {
+    return <Loader />;
   }
 
-  if (loader.loading === false && loader.error === true) {
-    <NotFound />;
+  if (noneUser) {
+    return <NotFound />;
   }
 
-  return hasUser && (
+  return (
     <>
       <UserProfileHeader user={userRequest} />
       <UserProfileSections user={userRequest} />
-      {isLoggedUser && <CreatePostButton />}
+      {(isLoggedUser && user.verified) && <CreatePostButton />}
       {location.hash === '#photos' ? (
         <UserPhotosGrid userPhotos={userRequest.contributions.photos} />
       ) : location.hash === '#comments' ? (
         <UserComments userComments={userRequest.contributions.comments} isProfile />
       ) : (
-        <GridLocations posts={userRequest.contributions.posts} />
+        <GridLocations>
+          {
+            userRequest.contributions.posts.map((post) => (
+              <LocationItem
+                key={post.id}
+                postId={post.id}
+                postName={post.title}
+                postProvince={post.province}
+                postCommentsLength={post.comments.length}
+                postPhoto={post.photo}
+              />
+            ))
+          }
+        </GridLocations>
       )}
     </>
   );
@@ -78,7 +74,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  getUser,
+  getUserRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

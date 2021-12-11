@@ -5,24 +5,27 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 // React-redux
 import { connect } from 'react-redux';
-import { createPost, createPreview } from '../actions';
+import { createPost, createPreview, uploadPost, setCounter } from '../actions';
 // Components
 import Footer from '../components/Footer';
 // Styles
 import '../assets/styles/UploadPosts.styl';
 
 const UploadPosts = (props) => {
-  const { createPost, history, post, user, createPreview } = props;
-
+  const {
+    uploadPost,
+    user,
+    createPreview,
+    counter,
+    setCounter,
+  } = props;
   // Styles
-  const [isReview, setReview] = useState(false);
-
   const [inputLength, setInputLength] = useState(0);
   const [filename, setFilename] = useState('Choose an Image');
   const [fileUrl, setFileUrl] = useState('');
+  // Dispatch user post info
   const [infoPost, setValues] = useState({
-    id: 1,
-    name: '',
+    title: '',
     province: '',
     averagePrice: '',
     photo: '',
@@ -31,20 +34,14 @@ const UploadPosts = (props) => {
       weatherEmoji: [],
     },
     userCreator: {},
-    usersContributors: [],
     rankings: [],
     review: '',
-    comments: [],
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createPost(infoPost);
-    console.log(post);
-    history.push('/', { uploaded: true });
+    uploadPost(infoPost);
   };
-
-  console.log(infoPost);
 
   const handlePhoto = (event) => {
     const url = URL.createObjectURL(event.target.files[0]);
@@ -53,15 +50,14 @@ const UploadPosts = (props) => {
   };
 
   const handleInput = (event) => {
-    (fileUrl && infoPost.name && infoPost.province) ? setReview(true) : setReview(false);
     setInputLength(event.target.value.length);
     user.verified && setValues({
       ...infoPost,
       [event.target.name]: event.target.value,
-      photo: fileUrl,
+      photo: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzgwMTV8MHwxfHNlYXJjaHwyfHxsYW5kc2NhcGV8ZW58MHx8fHwxNjM3ODAwNDg2&ixlib=rb-1.2.1&q=80&w=1080',
       userCreator: {
         id: user.id,
-        name: user.firstName,
+        name: user.name,
         username: user.username,
         photo: user.profilePhoto,
         verified: user.verified,
@@ -69,12 +65,21 @@ const UploadPosts = (props) => {
     });
   };
 
+  const showReview = fileUrl && infoPost.title && infoPost.province && infoPost.averagePrice;
+
   const handleClick = () => {
-    createPreview(infoPost);
+    createPreview({
+      ...infoPost,
+      id: String(counter),
+      photo: fileUrl,
+      comments: [],
+      usersContributors: [],
+    });
+    setCounter();
   };
 
-  const previewContainerStyles = classNames('uploadPost__review--container', {
-    isReview,
+  const previewTextStyles = classNames('uploadPost__review--text', {
+    showReview,
   });
 
   return (
@@ -108,11 +113,12 @@ const UploadPosts = (props) => {
             <input
               className='uploadPostInfo__item--input'
               id='placeName'
-              name='name'
+              name='title'
               type='text'
               placeholder='e.g. San Blas'
               required
               onChange={handleInput}
+              autoComplete='on'
             />
           </div>
           <div className='uploadPostInfo__item--container'>
@@ -166,19 +172,17 @@ const UploadPosts = (props) => {
             /200
           </p>
         </section>
+        <div className='uploadPost__review--container'>
+          <Link
+            to={showReview ? `/post/${String(counter)}` : '/upload'}
+            onClick={showReview ? handleClick : () => { }}
+            className={previewTextStyles}
+          >
+            Chequealo a tiempo real!
+          </Link>
+        </div>
         <button className='submitPostButton__button' type='submit'>Submit</button>
       </form>
-      <div className={previewContainerStyles}>
-        <Link
-          to='/post/1'
-          onClick={handleClick}
-          className='uploadPost__review--text'
-        >
-          See the
-          <br />
-          preview
-        </Link>
-      </div>
       <Footer />
     </>
   );
@@ -188,12 +192,15 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     post: state.post,
+    counter: state.counter,
   };
 };
 
 const mapDispatchToProps = {
   createPost,
   createPreview,
+  uploadPost,
+  setCounter,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadPosts);

@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // Redux
 import { connect } from 'react-redux';
-// // React-router-dom
-// import { Link } from 'react-router-dom';
-// // Classnames
-// import classNames from 'classnames';
-// fontawesome
+// Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 // Actions
@@ -16,7 +12,7 @@ import NotFound from './NotFound';
 import PostsInfo from '../components/PostsInfo';
 // import WeatherInfo from '../components/WeatherInfo';
 import UserPhoto from '../components/UserPhoto';
-import PostMenu from '../components/PostMenu';
+// import PostMenu from '../components/PostMenu';
 import PostRankings from '../components/PostRankings';
 import RankItem from '../components/RankItem';
 import RankingBar from '../components/RankingBar';
@@ -28,6 +24,7 @@ import CommentsSection from '../components/CommentsSection';
 import SwipingBar from '../components/SwipingBar';
 import Footer from '../components/Footer';
 import Loader from './Loader';
+import SetRankings from '../components/setRankings';
 // Styles
 import '../assets/styles/Posts.styl';
 
@@ -37,8 +34,6 @@ const Posts = (props) => {
     user,
     history,
     match,
-    // location,
-    createPost,
     cleanPreview,
     getPostSource,
     addRankings,
@@ -47,52 +42,24 @@ const Posts = (props) => {
 
   const { id } = match.params;
 
-  const [loader, setLoader] = useState({
-    loading: true,
-    error: null,
-    data: undefined,
-  });
-
-  const fetchData = async () => {
-    setLoader({
-      loading: true,
-      error: null,
-    });
-    try {
-      const data = await getPostSource(id);
-      setLoader({ loading: false, data });
-    } catch (err) {
-      setLoader({ loading: false, error: true });
-    }
-  };
+  const hasPost = Object.keys(post).length > 0;
+  const nonePost = Object.keys(post).length === 0;
 
   useEffect(() => {
-    fetchData();
+    getPostSource(id);
     return () => {
-      cleanPreview();
-      createPost({});
+      cleanPreview({});
     };
   }, []);
 
   const hasRanking = Object.keys(addRankings || {}).length > 0;
   const hasRating = Object.keys(addRatings || {}).length > 0;
 
-  // const isContribution = location.hash === '#contribution' || location.hash === '';
-  // const isForum = location.hash === '#forum';
-
-  // const itemStyles = classNames('commentsSection__item', {
-  //   isContribution,
-  // });
-
-  // const forumStyles = classNames('commentsSection__item', {
-  //   isForum,
-  // });
-
-  if (loader.loading === true && !loader.data) {
+  if (!hasPost) {
     return <Loader />;
   };
 
-  if (loader.loading === false && loader.error === true) {
+  if (nonePost) {
     return <NotFound />;
   };
 
@@ -101,15 +68,18 @@ const Posts = (props) => {
       <SwipingBar />
       <PostsInfo>
         <img className='postInfo__photo' src={post.photo} alt={post.name} />
-        <button type='button' onClick={() => history.push('/')} className='postInfo__backwardsButton'>
+        <button type='button' onClick={() => history.goBack()} className='postInfo__backwardsButton'>
           <FontAwesomeIcon className='postInfo__backwardsButton--icon' icon={faArrowLeft} />
         </button>
         <div className='postInfo__weather'>
           <img src={post.weather.weatherEmoji[0]} alt={post.weather.weatherEmoji[1]} />
-          <h1>{post.weather.weatherDegree}</h1>
+          <h1>
+            {post.weather.weatherDegree}
+            °
+          </h1>
         </div>
         <div className='postInfo__title'>
-          <h1>{post.name}</h1>
+          <h1>{post.title}</h1>
           <h2>
             Average Price: $
             {post.averagePrice}
@@ -152,7 +122,8 @@ const Posts = (props) => {
           </div>
         )}
       </PostsInfo>
-      <PostMenu />
+      {/* <PostMenu /> */}
+      {user.id === post.userCreator.id && <SetRankings postId={id} />}
       <PostRankings>
         <div className='postRankings__container'>
           <div className='postRankings__flex'>
@@ -161,7 +132,6 @@ const Posts = (props) => {
                 key={rank.rankId}
                 rankId={rank.rankId}
                 rankEmoji={rank.rankEmoji}
-                rankName={rank.rankName}
                 rankStatus={rank.rankStatus}
               />
             ))}
@@ -178,7 +148,7 @@ const Posts = (props) => {
       <PostReview postReview={post.review} />
       <UserRatingSystem>
         <h1 className='postUserRatingSystem__title'>
-          With your experience, how would you rate this place?
+          ¿Con tu experiencia en el lugar como la valorarías?
         </h1>
         <div className='postRankings__container'>
           <div className='postRankings__flex'>
@@ -186,7 +156,6 @@ const Posts = (props) => {
               <RankItem
                 key={rank.rankId}
                 rankEmoji={rank.rankEmoji}
-                rankName={rank.rankName}
                 isRating
               />
             ))}
@@ -203,28 +172,11 @@ const Posts = (props) => {
       </UserRatingSystem>
       <CommentsSection>
         <section className='commentsSection__container'>
-          <h2 className='commentsSection__forum'>Comments</h2>
-          {/* <Link
-            to={{
-              pathname: post.id,
-              hash: '#contribution',
-            }}
-            className={itemStyles}
-          >
-            Contribution
-          </Link>
-          <Link
-            to={{
-              pathname: post.id,
-              hash: '#forum',
-            }}
-            className={forumStyles}
-          >
-            Forum
-          </Link> */}
+          <h2 className='commentsSection__forum'>Comentarios</h2>
         </section>
         <ForumSection
           user={user}
+          postId={id}
           postComments={post.comments}
         />
       </CommentsSection>

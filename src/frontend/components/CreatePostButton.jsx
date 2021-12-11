@@ -6,7 +6,7 @@ const CreatePostButton = () => {
   return (
     <Link to='/upload' className='createPostButton__container'>
       <button className='createPostButton__button' type='button'>
-        New Post
+        Crear Post
       </button>
     </Link>
   );

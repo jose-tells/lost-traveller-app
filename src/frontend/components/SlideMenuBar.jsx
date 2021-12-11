@@ -4,15 +4,26 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faYoutube, faDiscord, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import classNames from 'classnames';
+// React-redux
 import { connect } from 'react-redux';
+import { logoutRequest } from '../actions';
 
 const SlideMenuBar = (props) => {
-  const { isOpen, handleDisplayMenu, user } = props;
+  const { isOpen, handleDisplayMenu, user, logoutRequest } = props;
 
-  const hasUser = Object.values(user).length > 0;
+  const hasUser = Boolean(user.id);
 
   const handleClick = () => {
     handleDisplayMenu(false);
+  };
+
+  const handleLogout = () => {
+    document.cookie = 'id=';
+    document.cookie = 'name=';
+    document.cookie = 'email=';
+    document.cookie = 'token=';
+    logoutRequest({});
+    window.location.href = '/';
   };
 
   const slideMenuBarStyles = classNames('slideMenuBar__container', {
@@ -43,6 +54,14 @@ const SlideMenuBar = (props) => {
         >
           Profile
         </Link>
+      )}
+      {hasUser && (
+        <h2
+          className='slideMenuBar__links'
+          onClick={handleLogout}
+        >
+          Log out
+        </h2>
       )}
       <Link
         to='/'
@@ -75,4 +94,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(SlideMenuBar);
+const mapDispatchToProps = {
+  logoutRequest,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SlideMenuBar);

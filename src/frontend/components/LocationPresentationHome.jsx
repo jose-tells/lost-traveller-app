@@ -10,8 +10,6 @@ import FilterWindowItem from './FilterWindowItem';
 import RankItem from './RankItem';
 import GridLocations from './GridLocations';
 import LocationItem from './LocationItem';
-// Media
-import sanBlas from '../assets/img/san-BlasH.jpg';
 
 const LocationPresentationHome = (props) => {
   const { posts, filterRanks, rankings } = props;
@@ -67,10 +65,10 @@ const LocationPresentationHome = (props) => {
             <LocationItem
               key={post.id}
               postId={post.id}
-              postName={post.name}
+              postName={post.title}
               postProvince={post.province}
               postCommentsLength={post.comments.length}
-              postPhoto={post.photo || sanBlas}
+              postPhoto={post.photo}
             />
           ))
         }

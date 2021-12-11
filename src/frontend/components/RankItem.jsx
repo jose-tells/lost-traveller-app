@@ -21,7 +21,7 @@ const RankItem = (props) => {
   const handleAddingRanking = () => {
     isRating ?
       addRating({ rankName, rankEmoji }) :
-      addRanking({ rankId, rankName, rankEmoji, rankStatus });
+      addRanking({ rankId, rankEmoji, rankStatus });
   };
 
   const handleClick = () => {
@@ -37,7 +37,7 @@ const RankItem = (props) => {
           </h1>
         </div>
       )}
-      <img className='postRanking__item--emoji' src={rankEmoji} alt={rankName} />
+      <img className='postRanking__item--emoji' src={rankEmoji[0]} alt={rankEmoji[1]} />
     </button>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 // Components
 import UserPhoto from './UserPhoto';
 // Media
-import photo1 from '../assets/img/PerfilPhoto.jpg';
+import defaultUser from '../assets/Svg/abstract-user-flat-4.svg';
 
 const UserProfileHeader = (props) => {
   const { user } = props;
@@ -11,12 +11,12 @@ const UserProfileHeader = (props) => {
       <div className='userProfileHeader__photoContainer'>
         <img
           className='userProfileHeader__photo'
-          src={user.profilePhoto}
+          src={user.profilePhoto || defaultUser}
           alt='User-Jose'
         />
       </div>
       <div className='userProfileHeader__info'>
-        <UserPhoto testProfilePhoto={photo1} isProfile />
+        <UserPhoto profilePhoto={user.profilePhoto} username={user.username} isProfile />
         <h2 className='userProfileHeader__info--name'>
           {
             user.verified && <img src='https://img.icons8.com/ios-filled/48/00998F/instagram-verification-badge.png' alt='Verified User' />

@@ -18,13 +18,15 @@ const Home = (props) => {
   const { location, user } = props;
   const [showSuccess, hideSuccess] = useState(location.state && location.state.uploaded);
 
-  const hasUser = Object.values(user).length > 0;
+  const hasUser = Boolean(user.id);
 
   useEffect(() => {
     setTimeout(() => {
       hideSuccess(false);
     }, 2800);
-    return () => hideSuccess(false);
+    return () => {
+      hideSuccess(false);
+    };
   }, []);
 
   return (

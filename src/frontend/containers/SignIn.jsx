@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 // React-redux
 import { connect } from 'react-redux';
-import { singInUser } from '../actions';
+import { loginUser } from '../actions';
 // Components
 import MenuNav from '../components/MenuNav';
 import SwitchLogMode from '../components/SwitchLogMode';
@@ -11,12 +12,14 @@ import wallpaperPhoto from '../assets/img/san-BlasH.jpg';
 import '../assets/styles/SignIn.styl';
 
 function SignIn(props) {
-  const { singInUser, history } = props;
+  const { loginUser } = props;
 
   const [userInfo, setUserInfo] = useState({
-    username: '',
+    email: '',
     password: '',
   });
+
+  const [checked, setChecked] = useState(false);
 
   const handleInput = (event) => {
     setUserInfo({
@@ -26,9 +29,8 @@ function SignIn(props) {
   };
 
   const handleSubmit = (event) => {
-    singInUser(userInfo.username);
-    history.push('/');
     event.preventDefault();
+    loginUser(userInfo, checked, '/');
   };
 
   return (
@@ -41,12 +43,33 @@ function SignIn(props) {
         <div className='signUserForm__container'>
           <form className='signUserForm__form' onSubmit={handleSubmit}>
             <div className='signUserForm__inputContainer'>
-              <h2 className='signUserForm__title'>Username</h2>
-              <input type='text' name='username' className='signUserForm__input' onChange={handleInput} />
+              <h2 className='signUserForm__title'>Email</h2>
+              <input
+                type='email'
+                name='email'
+                className='signUserForm__input'
+                onChange={handleInput}
+              />
             </div>
             <div className='signUserForm__inputContainer'>
               <h2 className='signUserForm__title'>Password</h2>
-              <input type='password' name='password' className='signUserForm__input' onChange={handleInput} />
+              <input
+                type='password'
+                name='password'
+                className='signUserForm__input'
+                onChange={handleInput}
+              />
+            </div>
+            <div className='signUserForm__checkboxContainer'>
+              <input
+                className='signUserForm__checkboxContainer--checkbox'
+                type='checkbox'
+                id='keepMe'
+                onChange={() => { setChecked(!checked); }}
+              />
+              <label htmlFor='keepMe'>
+                Recuérdame
+              </label>
             </div>
             <button type='submit' className='signUserForm__button'>Sign in</button>
           </form>
@@ -58,7 +81,7 @@ function SignIn(props) {
 };
 
 const mapDispatchToProps = {
-  singInUser,
+  loginUser,
 };
 
 export default connect(null, mapDispatchToProps)(SignIn);

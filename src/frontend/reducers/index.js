@@ -18,9 +18,14 @@ const reducer = (state, action) => {
     case 'GET_POST_SOURCE':
       return {
         ...state,
-        post: state.posts.find((post) => (post.id === Number(action.payload))) || [],
+        post: state.posts.find((post) => (post.id === action.payload)) || [],
       };
     case 'ADD_RANKING':
+      return {
+        ...state,
+        addRankings: action.payload,
+      };
+    case 'REMOVE_RANKING':
       return {
         ...state,
         addRankings: action.payload,
@@ -30,20 +35,21 @@ const reducer = (state, action) => {
         ...state,
         addRatings: action.payload,
       };
-    case 'REMOVE_RANKING':
+    case 'REQUEST_RANKING':
       return {
         ...state,
-        addRankings: action.payload,
+        post: {
+          ...state.post,
+          rankings: [
+            ...state.post.rankings,
+            action.payload,
+          ],
+        },
       };
     case 'GET_USER':
       return {
         ...state,
-        userRequest: state.users.find((user) => (user.username === action.payload)) || {},
-      };
-    case 'CREATE_POST':
-      return {
-        ...state,
-        post: action.payload,
+        userRequest: action.payload,
       };
     case 'CREATE_PREVIEW':
       return {
@@ -56,14 +62,19 @@ const reducer = (state, action) => {
     case 'CLEAN_PREVIEW':
       return {
         ...state,
-        posts: state.posts.filter((post) => post.id !== 1),
+        post: action.payload,
       };
     case 'SING_IN_USER':
       return {
         ...state,
-        user: state.users.find((user) => (user.username === action.payload)) || {},
+        user: action.payload,
       };
     case 'SING_UP_USER':
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case 'LOGOUT_REQUEST':
       return {
         ...state,
         user: action.payload,
@@ -78,6 +89,19 @@ const reducer = (state, action) => {
             action.payload,
           ],
         },
+      };
+    case 'DELETE_COMMENT':
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter((comment) => comment._id !== action.payload),
+        },
+      };
+    case 'SET_COUNTER':
+      return {
+        ...state,
+        counter: state.counter + 1,
       };
     default:
       return state;

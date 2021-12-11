@@ -2,6 +2,14 @@
 /* eslint-disable global-require */
 import express from 'express';
 import webpack from 'webpack';
+// Passport
+import passport from 'passport';
+// Boom
+import boom from '@hapi/boom';
+// Cookie-parser
+import cookieParser from 'cookie-parser';
+// Axios
+import axios from 'axios';
 // React
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -12,13 +20,26 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import helmet from 'helmet';
-import { env, port } from './config/index';
-import initialState from '../frontend/initialState.json';
+import { env, port, apiUrl, dev } from './config/index';
 import reducer from '../frontend/reducers/index';
 import serverRoutes from '../frontend/routes/serverRoutes';
 import getManifest from './getManifest';
+// Utils-queries
+import getUserData from './utils/queries/userData';
+import getRankings from './utils/queries/getRankings';
+import getPosts from './utils/queries/getPosts';
+import getRootUser from './utils/queries/getRootUser';
+
+const ONE_MONTH_IN_MILLISECONDS = 2629800000;
+const TWO_HOURS_IN_MILLISECONDS = 7200000;
+
+// Basic Strategy
+require('./utlis/auth/strategies/basic');
 
 const app = express();
+
+app.use(express.json());
+app.use(cookieParser());
 
 if (env === 'development') {
   console.log('Development config');
@@ -66,25 +87,246 @@ const setResponse = (html, preloadedState, manifest) => {
         <script>
         window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
         </script>
-        <script src=${mainBuild} type='text/javascript'></script> 
-        <script src=${vendorBuild} type='text/javascript'></script> 
+        <script src=${mainBuild} type='text/javascript'></script>
+        <script src=${vendorBuild} type='text/javascript'></script>
       </body>
     </html>`
   );
 };
 
-const renderApp = (req, res) => {
+const renderApp = async (req, res) => {
+  let initialState;
+  const { name: username, email, id, token } = req.cookies;
+  try {
+    // Get root user by username
+    const user = await getRootUser(username, email, id, token);
+    // Get posts
+    const posts = await getPosts();
+    // Get rankings
+    const rankings = await getRankings();
+
+    initialState = {
+      user,
+      userRequest: {},
+      post: {},
+      posts,
+      rankings,
+      addRankings: {},
+      addRatings: {},
+      filterRanks: [],
+      counter: 0,
+    };
+  } catch (err) {
+    initialState = {
+      user: {},
+      userRequest: {},
+      post: {},
+      posts: [],
+      rankings: [],
+      addRankings: {},
+      addRatings: {},
+      filterRanks: [],
+    };
+  }
+
   const store = createStore(reducer, initialState);
   const preloadedState = store.getState();
+  const isLogged = initialState.user.id;
   const html = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.url} context={{}}>
-        {renderRoutes(serverRoutes)}
+        {renderRoutes(serverRoutes(Boolean(isLogged)))}
       </StaticRouter>
     </Provider>,
   );
   res.send(setResponse(html, preloadedState, req.hashManifest));
 };
+
+app.get('/users/:username', async (req, res, next) => {
+  const { username } = req.params;
+
+  try {
+    const user = await getUserData(username, getPosts);
+
+    res.status(200).json(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/auth/sign-up', async (req, res, next) => {
+  const { body: user } = req;
+  try {
+    const userData = await axios({
+      url: `${apiUrl}/api/auth/sign-up`,
+      method: 'post',
+      data: {
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        password: user.password,
+        verified: false,
+        contributions: {
+          posts: [],
+          photos: [],
+          comments: [],
+        },
+      },
+    });
+
+    res.status(201).json({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      username: req.body.username,
+      email: req.body.email,
+      id: userData.data.id,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/auth/sign-in', async (req, res, next) => {
+  const { rememberMe } = req.body;
+  passport.authenticate('basic', async (error, data) => {
+    try {
+      if (error || !data) {
+        next(boom.unauthorized());
+      };
+
+      req.login(data, { session: false }, async (err) => {
+        if (err) {
+          next(err);
+        };
+
+        const { token, ...user } = data;
+
+        res.cookie('token', token, {
+          http: !dev,
+          secure: !dev,
+          maxAge: rememberMe ? ONE_MONTH_IN_MILLISECONDS : TWO_HOURS_IN_MILLISECONDS,
+        });
+        res.status(200).json(user);
+      });
+    } catch (err) {
+      next(err);
+    }
+  })(req, res, next);
+});
+
+app.post('/posts', async (req, res, next) => {
+  const { token, id } = req.cookies;
+  const { body: post } = req;
+  try {
+    const postData = {
+      ...post,
+      averagePrice: Number(post.averagePrice),
+      usersContributors: [],
+      comments: [],
+    };
+
+    const { data, status } = await axios({
+      url: `${apiUrl}/api/posts`,
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'post',
+      data: postData,
+    });
+
+    await axios({
+      url: `${apiUrl}/api/user-posts`,
+      method: 'post',
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        userId: id,
+        postId: data.data,
+      },
+    });
+
+    if (!data || status !== 201) {
+      next(boom.unauthorized());
+    }
+
+    res.status(201).json(data.data);
+
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/comments', async (req, res, next) => {
+  const { token, id } = req.cookies;
+  const { body: comment } = req;
+  try {
+    const { data, status } = await axios({
+      url: `${apiUrl}/api/comments`,
+      method: 'post',
+      headers: { Authorization: `Bearer ${token}` },
+      data: comment,
+    });
+
+    const commentData = data.data;
+
+    if (!data || status !== 201) {
+      return next(boom.unauthorized());
+    }
+
+    await axios({
+      url: `${apiUrl}/api/user-comments`,
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'post',
+      data: {
+        userId: id,
+        commentId: data.data,
+      },
+    });
+
+    return res.status(201).json(commentData);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/posts-rankings', async (req, res, next) => {
+  const { body: postRanking } = req;
+  const { token } = req.cookies;
+  try {
+    const { data, status } = await axios({
+      url: `${apiUrl}/api/posts-rankings`,
+      method: 'post',
+      headers: { Authorization: `Bearer ${token}` },
+      data: postRanking,
+    });
+
+    if (!data || status !== 201) {
+      next(boom.unauthorized());
+    }
+
+    res.status(201).json(data.data);
+  } catch (err) {
+    next(err);
+  };
+});
+
+app.delete('/comments/:commentId', async (req, res, next) => {
+  const { commentId } = req.params;
+  const { token } = req.cookies;
+  try {
+    const { data, status } = await axios({
+      url: `${apiUrl}/api/comments/${commentId}`,
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'delete',
+    });
+
+    if (!data || status !== 200) {
+      next(boom.unauthorized());
+    }
+
+    res.status(200).json(data.data);
+  } catch (err) {
+    next(err);
+  }
+});
 
 app.get('*', renderApp);
 

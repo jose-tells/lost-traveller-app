@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { removeRanking } from '../actions';
 
 const RankingBar = (props) => {
-  const { rankEmoji, rankName, rankStatus, removeRanking, isRating } = props;
+  const { rankEmoji, rankStatus, removeRanking, isRating } = props;
 
   const isBad = rankStatus >= 0 && rankStatus < 35;
   const isGood = rankStatus >= 35 && rankStatus < 75;
@@ -53,8 +53,8 @@ const RankingBar = (props) => {
 
   return (
     <div className='rankingBar__container' onClick={() => removeRanking({})}>
-      <img className='rankingBar__emoji' src={rankEmoji} alt={rankName} />
-      <p className='rankingBar__title'>{rankName}</p>
+      <img className='rankingBar__emoji' src={rankEmoji[0]} alt={rankEmoji[1]} />
+      <p className='rankingBar__title'>{rankEmoji[1]}</p>
       <div className={rankingBar}>
         {
           isRating ? (

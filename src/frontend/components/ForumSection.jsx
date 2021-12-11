@@ -1,81 +1,93 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+// React-router-dom
+import { Link } from 'react-router-dom';
 // React-redux
 import { connect } from 'react-redux';
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 // Components
-// import UserInput from './UserInput';
 import UserCommentLayout from './UserCommentLayout';
 import UserPhoto from './UserPhoto';
-import { createComment } from '../actions';
+import { createPostComment } from '../actions';
 
 const ForumSection = (props) => {
-  const { postComments, user, createComment } = props;
+  const { postId, postComments, user, createPostComment } = props;
 
-  // const maxLength = 50;
+  const inputComment = useRef(null);
 
-  // const [inputLength, setLength] = useState(0);
+  const handleDeleteInput = () => {
+    inputComment.current.value = null;
+  };
+
   const [commentInput, setCommentInput] = useState({
-    id: 2,
-    user,
     content: '',
-    date: '',
+    postId,
+    userCreator: {
+      userId: user.id,
+      username: user.username,
+      profilePhoto: user.profilePhoto,
+    },
     replies: [],
+    date: '',
   });
 
   const handleInput = (event) => {
-    // setLength(event.target.value.length);
     setCommentInput({
       ...commentInput,
       content: event.target.value,
       date: new Date(),
     });
-    console.log(commentInput);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(commentInput);
-    createComment(commentInput);
+    createPostComment(commentInput);
+    handleDeleteInput();
   };
 
   return (
     <div id='forum'>
-      <div className='commentsSection__contribution'>
-        <UserPhoto profilePhoto={user.photo} username={user.username} />
-        <div className='commentsSection__contribution--container'>
-          <form className='commentsSection__contribution--form' onSubmit={handleSubmit}>
-            <textarea
-              className='commentsSection__contribution--userInput isForum'
-              type='text'
-              id='contribution'
-              minLength='10'
-              placeholder='Dímelo'
-              onInput={handleInput}
-            />
-            <button type='submit' className='commentsSection__contribution--button'>
-              <FontAwesomeIcon icon={faPaperPlane} className='commentsSection__contribution--icon' />
-            </button>
-          </form>
-          {/* <span className='commentsSection__contribution--textLimit'>
-            {inputLength}
-            /
-            {maxLength}
-          </span> */}
+      {user.id ? (
+        <div className='commentsSection__contribution'>
+          <UserPhoto profilePhoto={user.profilePhoto} username={user.username} />
+          <div className='commentsSection__contribution--container'>
+            <form className='commentsSection__contribution--form' onSubmit={handleSubmit}>
+              <textarea
+                ref={inputComment}
+                className='commentsSection__contribution--userInput isForum'
+                type='text'
+                id='contribution'
+                minLength='10'
+                placeholder='Dímelo'
+                onInput={handleInput}
+              />
+              <button type='submit' className='commentsSection__contribution--button'>
+                <FontAwesomeIcon icon={faPaperPlane} className='commentsSection__contribution--icon' />
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      ) : (
+        <section className='commentsSection__noLogged'>
+          <h2 className='commentsSection__noLogged--text'>Se el primero en decir que ta priti!</h2>
+          <Link className='commentsSection__noLogged--link' to='/signIn'>Inicia Sesión!</Link>
+        </section>
+      )}
       <section className='userComments__container'>
         {
           postComments.map((comment) => {
+            const isLoggedUser = `${user.id}` === comment.userCreator.userId;
             return (
               <UserCommentLayout
-                key={comment.id}
+                key={comment._id}
+                commentId={comment._id}
                 comment={comment.content}
-                profilePhoto={comment.user.photo}
-                username={comment.user.username}
+                profilePhoto={comment.userCreator.profilePhoto}
+                username={comment.userCreator.username}
                 replies={comment.replies}
                 isForum
+                isLoggedUser={isLoggedUser}
               />
             );
           })
@@ -86,7 +98,7 @@ const ForumSection = (props) => {
 };
 
 const mapDispatchToProps = {
-  createComment,
+  createPostComment,
 };
 
 export default connect(null, mapDispatchToProps)(ForumSection);

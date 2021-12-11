@@ -10,11 +10,11 @@ const UserComments = (props) => {
       {
         userComments.map((comment) => (
           <UserCommentLayout
-            key={comment.id}
+            key={comment._id}
             commentPostId={comment.postId}
             comment={comment.content}
-            profilePhoto={comment.user.photo}
-            username={comment.user.username}
+            profilePhoto={comment.userCreator.profilePhoto}
+            username={comment.userCreator.username}
             isProfile={isProfile}
           />
         ))

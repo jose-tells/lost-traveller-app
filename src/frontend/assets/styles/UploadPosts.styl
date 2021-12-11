@@ -77,6 +77,11 @@
     font-size text-size
     font-weight 300
     color Complementary-icon
+  .uploadPostInfo__item--title
+    margin 10px 0
+    font-size sub-title-size
+    font-weight 600
+    color Elegant-black
 
 .postTextInput__container
   display flex
@@ -113,27 +118,31 @@
     color Icon-blue
 
 .uploadPost__review--container
-  position fixed
-  top 5%
-  left 10px
+  width 90%
   display flex
-  justify-content center
+  margin 10px auto
+  justify-content flex-start
   align-items center
-  width 70px
-  height 70px
-  background Complementary-icon
-  border-radius 100%
-  opacity .7
-  transform translateX(-200%)
   transition 0.5s
   .uploadPost__review--text
     text-decoration none
     text-align center
     font-size mini-text-size
-    color White
+    color #c2c2c2
+    z-index 0
 
-.uploadPost__review--container.isReview
-  transform translateX(0)
+.uploadPost__review--text.showReview
+  text-decoration underline
+  color Complementary-icon
+  z-index 20
+
+.uploadPost__review--container::before
+  content ''
+  width 90%
+  height 20px
+  position absolute
+  background transparent
+  z-index 10
 
 .submitPostButton__button
   width 144px

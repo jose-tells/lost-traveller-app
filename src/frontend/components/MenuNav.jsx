@@ -4,24 +4,27 @@ import { Link } from 'react-router-dom';
 // Classnames
 import classNames from 'classnames';
 // Use-gesture
-// import { useScroll } from '@use-gesture/react';
+import { useScroll } from '@use-gesture/react';
 // Components
 import HamburgerMenu from './HamburgerMenu';
 import SlideMenuBar from './SlideMenuBar';
 // Images
 import travelLogo from '../assets/Svg/logo-travel-Wihte.svg';
 
-const MenuNav = ({ hasUser }) => {
+const MenuNav = () => {
+
   const [isOpen, handleDisplayMenu] = useState(false);
 
-  const [isScrolled] = useState(false);
+  const [isScrolled, setScrolled] = useState(false);
 
   const menuNavScrolledStyles = classNames('menuNav__container', {
     isScrolled,
     isOpen,
   });
 
-  // useScroll(({ xy: [, y] }) => { setState(y > 1); }, { target: document });
+  const hasWindow = typeof window === 'undefined' ? '' : window;
+
+  useScroll(({ xy: [, y] }) => { setScrolled(y > 1); }, { target: hasWindow });
 
   return (
     <>
