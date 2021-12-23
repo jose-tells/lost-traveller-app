@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A tourism app for travellers",
   "main": "index.js",
+  "engines": {
+    "node": "14.18.x"
+  },
   "scripts": {
     "start": "webpack --mode production",
     "dev": "webpack serve",
