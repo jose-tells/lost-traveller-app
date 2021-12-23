@@ -1,0 +1,35 @@
+.homePresentation__container
+  height 100vh
+  display grid
+  grid-template-columns repeat(16, 1fr)
+  grid-template-rows repeat(16, 1fr)
+  overflow hidden
+  .homePresentation__wallpaper
+    height 150%
+    justify-self center
+    grid-column 1/17
+    grid-row 1/17
+
+.homePresentation__signInContainer
+    // Flexing
+    display flex
+    justify-content center
+    align-items center
+    // Griding
+    grid-column 1/17
+    grid-row 15/16
+    align-self flex-start
+    justify-self center
+    outline none
+    width 100px
+    height 29px
+    background transparent
+    border 1px solid Button-blue
+    border-radius 20px
+    .homePresentation__singInBtn
+      text-decoration none
+      font-family Main-font
+      font-weight 300
+      font-size text-size
+      text-align center
+      color White
