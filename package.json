@@ -4,7 +4,7 @@
   "description": "A tourism app for travellers",
   "main": "index.js",
   "engines": {
-    "node": "14.18.x"
+    "node": "14.x"
   },
   "scripts": {
     "start": "webpack --mode production",
