@@ -1,0 +1,63 @@
+
+.inputRankings__container
+  width 90%
+  margin 10px auto
+  .inputRankings__title
+    font-size sub-title-size
+    font-weight 600
+    color Elegant-black
+  .inputRankings__form
+    margin 5px 0
+    width 100%
+    padding 5px
+    border solid 1px Letter-orange
+    border-radius 20px
+    .inputRankings__form--input
+      font-family Main-font
+      font-size mini-text-size + 0.2
+      font-weight 500
+      margin-left 5px
+      width 90%
+      border none
+      outline none
+      color Elegant-black
+    .inputRankings__form--input::placeholder
+      font-family Main-font
+      font-size mini-text-size + 0.2
+      font-weight 400
+      color #c2c2c2
+
+.inputRankings__list--container
+  position absolute
+  min-width 150px
+  height 0
+  background White
+  box-shadow 0 4px 6px rgba(0 0 0 0.4)
+  border-radius 10px
+  overflow-y auto
+  z-index 20
+  .inputRankings__list--itemContainer
+    margin 7px
+    .inputRankings__list--item
+      margin 5px 0
+      list-style none
+      font-family Main-font
+      font-size mini-text-size + 0.2
+      font-weight 500
+      color Elegant-black
+      cursor pointer
+    .inputRankings__list--item.isDisabled
+      color #c2c2c2
+
+
+.inputRankings__list--container.rankList
+  height auto
+  max-height 100px
+
+.inputRankings__list--text
+  margin 5px
+  font-family Main-font
+  font-size mini-text-size + 0.2
+  font-weight 500
+  color #c2c2c2
+

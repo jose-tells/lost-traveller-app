@@ -1,0 +1,46 @@
+.signUserForm__container
+  width 375px
+  height 430px
+  // Grding
+  grid-column 1
+  grid-row 3/7
+  align-self center
+  justify-self center
+  // Flexing
+  display flex
+  flex-direction column
+  justify-content center
+  .signUserForm__form
+    display flex
+    flex-direction column
+    justify-content flex-start
+    align-items center
+    align-self center
+    .signUserForm__error
+      margin-bottom 10px
+      align-self flex-start
+      font-size mini-text-size
+      font-weight 600
+      color Complementary-icon
+    .signUserForm__button
+      width auto
+      padding 5px
+      margin 20px 0 5px 0
+      border none
+      border-radius 20px
+      background-color Letter-orange
+      font-family Main-font
+      font-weight 300
+      font-size text-size
+      color White
+
+.signUserForm__checkboxContainer
+  display flex
+  .signUserForm__checkboxContainer--checkbox
+    border none
+    outline none
+  .signUserForm__checkboxContainer--checkbox + label
+    font-size mini-text-size
+    font-weight 400
+    margin-left 5px
+    color White
