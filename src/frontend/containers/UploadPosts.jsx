@@ -54,6 +54,10 @@ const UploadPosts = (props) => {
     user.verified && setValues({
       ...infoPost,
       [event.target.name]: event.target.value,
+      weather: {
+        weatherDegree: 30,
+        weatherEmoji: ['https://img.icons8.com/emoji/48/000000/sun-emoji.png', 'sunny'],
+      },
       photo: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzgwMTV8MHwxfHNlYXJjaHwyfHxsYW5kc2NhcGV8ZW58MHx8fHwxNjM3ODAwNDg2&ixlib=rb-1.2.1&q=80&w=1080',
       userCreator: {
         id: user.id,
@@ -71,6 +75,10 @@ const UploadPosts = (props) => {
     createPreview({
       ...infoPost,
       id: String(counter),
+      weather: {
+        weatherDegree: 30,
+        weatherEmoji: ['https://img.icons8.com/emoji/48/000000/sun-emoji.png', 'sunny'],
+      },
       photo: fileUrl,
       comments: [],
       usersContributors: [],

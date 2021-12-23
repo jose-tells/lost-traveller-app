@@ -85,6 +85,11 @@ export const requestRanking = (payload) => ({
   payload,
 });
 
+export const errorHandler = (payload) => ({
+  type: 'ERROR_HANDLER',
+  payload,
+});
+
 export const registerUser = (payload, redirectURL) => {
   return (dispatch) => {
     axios.post('/auth/sign-up', payload)
@@ -118,18 +123,18 @@ export const loginUser = ({ email, password }, rememberMe, redirectURL) => {
       .then(() => {
         window.location.href = redirectURL;
       })
-      .catch((error) => console.log(error));
+      .catch((error) => dispatch(errorHandler(error)));
   };
 };
 
-export const getUserRequest = (username) => {
+export const getPost = (postId) => {
   return (dispatch) => {
     axios({
-      url: `/users/${username}`,
+      url: `/posts/${postId}`,
       method: 'get',
     })
-      .then(({ data }) => dispatch(getUser(data)))
-      .catch((error) => console.log(error));
+      .then(({ data }) => dispatch(getPostSource(data)))
+      .catch((error) => console.error(error));
   };
 };
 
@@ -145,6 +150,17 @@ export const createPostComment = (payload) => {
         ...payload,
       })))
       .catch((err) => console.error(err));
+  };
+};
+
+export const getUserRequest = (username) => {
+  return (dispatch) => {
+    axios({
+      url: `/users/${username}`,
+      method: 'get',
+    })
+      .then(({ data }) => dispatch(getUser(data)))
+      .catch((error) => console.log(error));
   };
 };
 

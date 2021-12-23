@@ -12,7 +12,7 @@ import wallpaperPhoto from '../assets/img/san-BlasH.jpg';
 import '../assets/styles/SignIn.styl';
 
 function SignIn(props) {
-  const { loginUser } = props;
+  const { loginUser, error } = props;
 
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -42,6 +42,7 @@ function SignIn(props) {
         </div>
         <div className='signUserForm__container'>
           <form className='signUserForm__form' onSubmit={handleSubmit}>
+            {error && <p className='signUserForm__error'>*Usuario y/o contraseña incorrectos</p>}
             <div className='signUserForm__inputContainer'>
               <h2 className='signUserForm__title'>Email</h2>
               <input
@@ -52,7 +53,7 @@ function SignIn(props) {
               />
             </div>
             <div className='signUserForm__inputContainer'>
-              <h2 className='signUserForm__title'>Password</h2>
+              <h2 className='signUserForm__title'>Contraseña</h2>
               <input
                 type='password'
                 name='password'
@@ -71,17 +72,23 @@ function SignIn(props) {
                 Recuérdame
               </label>
             </div>
-            <button type='submit' className='signUserForm__button'>Sign in</button>
+            <button type='submit' className='signUserForm__button'>Inicia Sesión</button>
           </form>
-          <SwitchLogMode link='signUp' linkText='Sign Up' />
+          <SwitchLogMode message='¿No tienes una cuenta?' link='signUp' linkText='Registrarme' />
         </div>
       </main>
     </>
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    error: state.error,
+  };
+};
+
 const mapDispatchToProps = {
   loginUser,
 };
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

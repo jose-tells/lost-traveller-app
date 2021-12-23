@@ -98,7 +98,7 @@ const SingUp = (props) => {
             </div>
             <button type='submit' className='signUserForm__button'>Sign up</button>
           </form>
-          <SwitchLogMode link='signIn' linkText='Sign In' />
+          <SwitchLogMode message='¿Ya tienes una cuenta?' link='signIn' linkText='Inicia Sesión' />
         </div>
       </main>
     </>

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 // Actions
-import { getPostSource, cleanPreview, createPost } from '../actions';
+import { getPost, cleanPreview, createPost } from '../actions';
 // Pages
 import NotFound from './NotFound';
 //Components
@@ -35,7 +35,7 @@ const Posts = (props) => {
     history,
     match,
     cleanPreview,
-    getPostSource,
+    getPost,
     addRankings,
     addRatings,
   } = props;
@@ -46,7 +46,7 @@ const Posts = (props) => {
   const nonePost = Object.keys(post).length === 0;
 
   useEffect(() => {
-    getPostSource(id);
+    getPost(id);
     return () => {
       cleanPreview({});
     };
@@ -196,7 +196,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  getPostSource,
+  getPost,
   cleanPreview,
   createPost,
 };

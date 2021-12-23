@@ -20,7 +20,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import helmet from 'helmet';
-import { env, port, apiUrl, dev } from './config/index';
+import { env, port, apiUrl, dev, cssInline, jsInline } from './config/index';
 import reducer from '../frontend/reducers/index';
 import serverRoutes from '../frontend/routes/serverRoutes';
 import getManifest from './getManifest';
@@ -29,6 +29,7 @@ import getUserData from './utils/queries/userData';
 import getRankings from './utils/queries/getRankings';
 import getPosts from './utils/queries/getPosts';
 import getRootUser from './utils/queries/getRootUser';
+import listPostComments from './utils/queries/listPostComments';
 
 const ONE_MONTH_IN_MILLISECONDS = 2629800000;
 const TWO_HOURS_IN_MILLISECONDS = 7200000;
@@ -63,7 +64,11 @@ if (env === 'development') {
   app.use(helmet(
     { contentSecurityPolicy: false },
   ));
-  app.disable('x-powered-by');
+  app.use((req, res, next) => {
+    res.setHeader('content-security-policy-report-only', `base-uri 'self'; connect-src 'self'; default-src 'self'; font-src 'self' https://fonts.gstatic.com; frame-src 'self'; img-src 'self' https://images.unsplash.com https://img.icons8.com/; manifest-src 'self'; media-src 'self'; object-src 'none'; report-uri https://61c4b58db122e1ebfdf74fec.endpoint.csper.io/; script-src 'report-sample' 'self' '${jsInline}'; style-src 'report-sample' 'self' https://fonts.googleapis.com '${cssInline}'; worker-src 'none';`);
+    next();
+  });
+
 };
 
 const setResponse = (html, preloadedState, manifest) => {
@@ -115,6 +120,7 @@ const renderApp = async (req, res) => {
       addRatings: {},
       filterRanks: [],
       counter: 0,
+      error: '',
     };
   } catch (err) {
     initialState = {
@@ -192,7 +198,7 @@ app.post('/auth/sign-in', async (req, res, next) => {
   passport.authenticate('basic', async (error, data) => {
     try {
       if (error || !data) {
-        next(boom.unauthorized());
+        return next(boom.unauthorized());
       };
 
       req.login(data, { session: false }, async (err) => {
@@ -213,6 +219,29 @@ app.post('/auth/sign-in', async (req, res, next) => {
       next(err);
     }
   })(req, res, next);
+});
+
+app.get('/posts/:postId', async (req, res, next) => {
+  const { postId } = req.params;
+  try {
+    let postData = await axios({
+      url: `${apiUrl}/api/posts/${postId}`,
+      method: 'get',
+    });
+
+    postData = postData.data.data;
+
+    const postComments = await listPostComments(`${apiUrl}/api/comments?postId=${postData._id}`);
+
+    const post = {
+      ...postData,
+      comments: postComments,
+    };
+
+    res.status(200).json(post);
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.post('/posts', async (req, res, next) => {

@@ -18,7 +18,7 @@ const reducer = (state, action) => {
     case 'GET_POST_SOURCE':
       return {
         ...state,
-        post: state.posts.find((post) => (post.id === action.payload)) || [],
+        post: action.payload,
       };
     case 'ADD_RANKING':
       return {
@@ -102,6 +102,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         counter: state.counter + 1,
+      };
+    case 'ERROR_HANDLER':
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

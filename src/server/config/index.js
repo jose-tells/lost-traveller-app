@@ -5,6 +5,8 @@ const {
   PORT,
   API_URL,
   API_KEY_TOKEN,
+  CSS_INLINE,
+  JS_INLINE,
 } = process.env;
 
 module.exports = {
@@ -13,4 +15,6 @@ module.exports = {
   port: PORT,
   apiUrl: API_URL,
   apiKeyToken: API_KEY_TOKEN,
+  cssInline: CSS_INLINE,
+  jsInline: JS_INLINE,
 };
