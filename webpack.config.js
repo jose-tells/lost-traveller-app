@@ -23,6 +23,9 @@ module.exports = {
     filename: isDev ? 'assets/app.js' : 'assets/app-[contenthash].js',
     publicPath: '/',
   },
+  stats: {
+    errorDetails: true,
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
