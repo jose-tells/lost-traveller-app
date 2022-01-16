@@ -23,9 +23,6 @@ module.exports = {
     filename: isDev ? 'assets/app.js' : 'assets/app-[contenthash].js',
     publicPath: '/',
   },
-  stats: {
-    errorDetails: true,
-  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -61,13 +58,7 @@ module.exports = {
       },
       {
         test: /\.(css|styl)$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          'css-loader',
-          'stylus-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader'],
       },
       {
         test: /\.(png|svg|jpg|mp4)$/,
@@ -81,17 +72,17 @@ module.exports = {
     ],
   },
   plugins: [
-    isDev ? new webpack.HotModuleReplacementPlugin() : () => {},
+    isDev ? new webpack.HotModuleReplacementPlugin() : () => { },
     // HtmlWebpackPlugin generate an HTML5 file that includes the webpack configuration in a script at the top of the HTML file.
     new MiniCssExtractPlugin({
       filename: isDev ? 'assets/app.css' : 'assets/app-[contenthash].css', // This will save the file into the assets folder with the previous name that we set.
     }),
-    isDev ? () => {} : new CompressionPlugin({
+    isDev ? () => { } : new CompressionPlugin({
       test: /\.(js|css)$/,
       filename: '[path][base].gz',
     }),
-    isDev ? () => {} : new WebpackManifestPlugin(),
-    isDev ? () => {} : new CleanWebpackPlugin({
+    isDev ? () => { } : new WebpackManifestPlugin(),
+    isDev ? () => { } : new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: path.resolve(`${__dirname}src/server/public`),
     }),
   ],
