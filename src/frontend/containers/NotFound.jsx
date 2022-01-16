@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//components
-import MenuNav from '../components/MenuNav';
 //styles
 import '../assets/styles/NotFound.styl';
 //img
-import compassBroken from '../assets/Svg/compassBrokenWhite.svg';
+import compassBroken from '../assets/svg/compassBrokenWhite.svg';
 
 export default function NotFound() {
   return (
     <>
-      <MenuNav />
+      {/* <MenuNav /> */}
       <main className='notFound__container'>
         <div className='notFoundCode__container'>
           <div className='notFoundCode__number--container'>

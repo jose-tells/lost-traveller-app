@@ -1,33 +1,30 @@
 import React from 'react';
-// Components
-import UserPhoto from './UserPhoto';
 // Media
-import defaultUser from '../assets/Svg/abstract-user-flat-4.svg';
+import defaultUser from '../assets/svg/abstract-user-flat-4.svg';
 
-const UserProfileHeader = (props) => {
-  const { user } = props;
+const UserProfileHeader = ({ profilePhoto, isVerified, firstName, lastName, username, children }) => {
   return (
     <header className='userProfileHeader__container'>
       <div className='userProfileHeader__photoContainer'>
         <img
           className='userProfileHeader__photo'
-          src={user.profilePhoto || defaultUser}
-          alt='User-Jose'
+          src={profilePhoto || defaultUser}
+          alt={username}
         />
       </div>
       <div className='userProfileHeader__info'>
-        <UserPhoto profilePhoto={user.profilePhoto} username={user.username} isProfile />
+        {children}
         <h2 className='userProfileHeader__info--name'>
           {
-            user.verified && <img src='https://img.icons8.com/ios-filled/48/00998F/instagram-verification-badge.png' alt='Verified User' />
+            isVerified && <img src='https://img.icons8.com/ios-filled/48/00998F/instagram-verification-badge.png' alt='Verified User' />
           }
-          {user.firstName}
+          {firstName}
           {' '}
-          {user.lastName}
+          {lastName}
         </h2>
         <h3 className='userProfileHeader__info--username'>
           @
-          {user.username}
+          {username}
         </h3>
       </div>
     </header>

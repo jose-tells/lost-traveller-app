@@ -21,7 +21,7 @@ const RankItem = (props) => {
   const handleAddingRanking = () => {
     isRating ?
       addRating({ rankName, rankEmoji }) :
-      addRanking({ rankId, rankEmoji, rankStatus });
+      addRanking({ rankId, rankName, rankEmoji, rankStatus });
   };
 
   const handleClick = () => {
@@ -30,14 +30,7 @@ const RankItem = (props) => {
 
   return (
     <button type='button' className='postRanking__item' onClick={isFilter ? handleClick : handleAddingRanking}>
-      {isFilter && (
-        <div className='postRanking__close--container'>
-          <h1 className='postRanking__item--close'>
-            X
-          </h1>
-        </div>
-      )}
-      <img className='postRanking__item--emoji' src={rankEmoji[0]} alt={rankEmoji[1]} />
+      <img className='postRanking__item--emoji' src={rankEmoji} alt={rankName} />
     </button>
   );
 };

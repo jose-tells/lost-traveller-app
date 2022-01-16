@@ -1,20 +1,17 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
-// Redux
-import { connect } from 'react-redux';
 // Classnames
 import classNames from 'classnames';
 // Actions
-import { removeRanking } from '../actions';
 
 const RankingBar = (props) => {
-  const { rankEmoji, rankStatus, removeRanking, isRating } = props;
+  const { rankEmoji, rankName, rankStatus, removeRanking, isRating } = props;
 
   const isBad = rankStatus >= 0 && rankStatus < 35;
   const isGood = rankStatus >= 35 && rankStatus < 75;
   // const isExcellent = rankStatus >= 75 && rankStatus <= 100;
 
-  const [valuePercentage, setValuePercentage] = useState(1);
+  const [valuePercentage, setValuePercentage] = useState(0);
 
   const isDynamicBad = valuePercentage >= 0 && valuePercentage < 35;
   const isDynamicGood = valuePercentage >= 35 && valuePercentage < 75;
@@ -53,8 +50,8 @@ const RankingBar = (props) => {
 
   return (
     <div className='rankingBar__container' onClick={() => removeRanking({})}>
-      <img className='rankingBar__emoji' src={rankEmoji[0]} alt={rankEmoji[1]} />
-      <p className='rankingBar__title'>{rankEmoji[1]}</p>
+      <img className='rankingBar__emoji' src={rankEmoji} alt={rankName} />
+      <p className='rankingBar__title'>{rankName}</p>
       <div className={rankingBar}>
         {
           isRating ? (
@@ -98,8 +95,4 @@ const RankingBar = (props) => {
   );
 };
 
-const mapDispatchToProps = {
-  removeRanking,
-};
-
-export default connect(null, mapDispatchToProps)(RankingBar);
+export default RankingBar;

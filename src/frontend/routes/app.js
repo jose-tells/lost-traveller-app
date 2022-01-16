@@ -9,7 +9,7 @@ import UserProfile from '../containers/UserProfile';
 import UploadPosts from '../containers/UploadPosts';
 import NotFound from '../containers/NotFound';
 
-const App = ({ isLogged }) => (
+const App = ({ isLogged, isAdmin }) => (
   <BrowserRouter>
     <Switch>
       <Route exact path='/' component={Home} />
@@ -17,7 +17,7 @@ const App = ({ isLogged }) => (
       <Route exact path='/signin' component={isLogged ? Home : SignIn} />
       <Route exact path='/signup' component={isLogged ? Home : SignUp} />
       <Route exact path='/profile/:username' component={UserProfile} />
-      <Route exact path='/upload' component={isLogged ? UploadPosts : Home} />
+      <Route exact path='/upload' component={(isLogged && isAdmin) ? UploadPosts : Home} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>

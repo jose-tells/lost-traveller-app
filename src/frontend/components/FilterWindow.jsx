@@ -2,7 +2,7 @@ import React from 'react';
 // Classnames
 import classNames from 'classnames';
 //styles
-import '../assets/styles/Components/FilterWindow.styl';
+import '../assets/styles/components/FilterWindow.styl';
 
 const FilterWindow = ({ children, openFilter }) => {
 

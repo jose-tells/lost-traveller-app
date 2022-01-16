@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 // React-redux
 import { connect } from 'react-redux';
@@ -10,6 +9,9 @@ import SwitchLogMode from '../components/SwitchLogMode';
 import wallpaperPhoto from '../assets/img/san-BlasH.jpg';
 //styles
 import '../assets/styles/SignIn.styl';
+import LogInput from '../components/LogInput';
+import CheckBox from '../components/CheckBox';
+import LogButton from '../components/LogButton';
 
 function SignIn(props) {
   const { loginUser, error } = props;
@@ -21,7 +23,7 @@ function SignIn(props) {
 
   const [checked, setChecked] = useState(false);
 
-  const handleInput = (event) => {
+  const handleChange = (event) => {
     setUserInfo({
       ...userInfo,
       [event.target.name]: event.target.value,
@@ -33,6 +35,10 @@ function SignIn(props) {
     loginUser(userInfo, checked, '/');
   };
 
+  const handleCheck = () => {
+    setChecked(!checked);
+  };
+
   return (
     <>
       <MenuNav />
@@ -42,39 +48,27 @@ function SignIn(props) {
         </div>
         <div className='signUserForm__container'>
           <form className='signUserForm__form' onSubmit={handleSubmit}>
-            {error && <p className='signUserForm__error'>*Usuario y/o contraseña incorrectos</p>}
-            <div className='signUserForm__inputContainer'>
-              <h2 className='signUserForm__title'>Email</h2>
-              <input
-                type='email'
-                name='email'
-                className='signUserForm__input'
-                onChange={handleInput}
-              />
-            </div>
-            <div className='signUserForm__inputContainer'>
-              <h2 className='signUserForm__title'>Contraseña</h2>
-              <input
-                type='password'
-                name='password'
-                className='signUserForm__input'
-                onChange={handleInput}
-              />
-            </div>
-            <div className='signUserForm__checkboxContainer'>
-              <input
-                className='signUserForm__checkboxContainer--checkbox'
-                type='checkbox'
-                id='keepMe'
-                onChange={() => { setChecked(!checked); }}
-              />
-              <label htmlFor='keepMe'>
-                Recuérdame
-              </label>
-            </div>
-            <button type='submit' className='signUserForm__button'>Inicia Sesión</button>
+            {error && <p className='signUserForm__error'>*Incorrect Email or password</p>}
+            <LogInput
+              inputLabel='Email'
+              inputType='email'
+              inputName='email'
+              valueRetrieve={handleChange}
+            />
+            <LogInput
+              inputLabel='Password'
+              inputType='password'
+              inputName='password'
+              valueRetrieve={handleChange}
+            />
+            <CheckBox handleCheck={handleCheck} />
+            <LogButton logText='Log In' />
           </form>
-          <SwitchLogMode message='¿No tienes una cuenta?' link='signUp' linkText='Registrarme' />
+          <SwitchLogMode
+            message="Don't have an account?"
+            link='signUp'
+            linkText='Register'
+          />
         </div>
       </main>
     </>

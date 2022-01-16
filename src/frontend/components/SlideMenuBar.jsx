@@ -46,6 +46,15 @@ const SlideMenuBar = (props) => {
       >
         Places
       </a>
+      {!hasUser && (
+        <Link
+          to='/signin'
+          className='slideMenuBar__links'
+          onClick={handleClick}
+        >
+          Log In
+        </Link>
+      )}
       {hasUser && (
         <Link
           to={`/profile/${user.username}`}
@@ -63,26 +72,19 @@ const SlideMenuBar = (props) => {
           Log out
         </h2>
       )}
-      <Link
-        to='/'
-        className='slideMenuBar__links'
-        onClick={handleDisplayMenu}
-      >
-        Contact
-      </Link>
       <div className='slideMenuBar__icon--container'>
-        <Link to='https://www.instagram.com/projectconquestt/'>
+        <a href='https://www.instagram.com/jose_tells/'>
           <FontAwesomeIcon icon={faInstagram} className='slideMenuBar__icon--item' />
-        </Link>
-        <Link to='https://www.youtube.com/channel/UCipdJHJR0MaQhHu1YrGP3Ag'>
+        </a>
+        <a href='https://www.youtube.com/channel/UCipdJHJR0MaQhHu1YrGP3Ag/'>
           <FontAwesomeIcon icon={faYoutube} className='slideMenuBar__icon--item' />
-        </Link>
-        <Link to='https://discord.gg/TF9zVsN6'>
+        </a>
+        <a href='https://discord.gg/uvc9JyWzJ7/'>
           <FontAwesomeIcon icon={faDiscord} className='slideMenuBar__icon--item' />
-        </Link>
-        <Link to='https://twitter.com'>
+        </a>
+        <a href='https://twitter.com/jose_tells/'>
           <FontAwesomeIcon icon={faTwitter} className='slideMenuBar__icon--item' />
-        </Link>
+        </a>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ const LocationItem = (props) => {
           <h4 className='location__item--reviews'>
             {postCommentsLength}
             {' '}
-            Reviews
+            Comments
           </h4>
         </div>
       </div>

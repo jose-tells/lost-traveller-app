@@ -1,23 +1,24 @@
+import classNames from 'classnames';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const UserProfileButton = (props) => {
-  const { buttonName, itemsLength, pathname, isMain } = props;
+  const { buttonName, itemsLength, changeSection, isSelected } = props;
+
+  const sectionStyles = classNames('UserProfileSections__userProfileButton', {
+    isSelected,
+  });
 
   return (
-    <div className='UserProfileSections__userProfileButton'>
-      <Link
-        to={{
-          pathname,
-          hash: isMain ? false : buttonName.toLowerCase(),
-        }}
+    <div className={sectionStyles}>
+      <button
         className='UserProfileSections__userProfileButton--button'
         type='button'
+        onClick={changeSection}
       >
         {itemsLength}
         <br />
         {buttonName}
-      </Link>
+      </button>
     </div>
   );
 };

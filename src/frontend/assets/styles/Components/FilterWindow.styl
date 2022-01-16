@@ -2,31 +2,40 @@
   position absolute
   margin-left 2.5%
   margin-top -5px
-  width 328px
+  min-width 250px
   height 0
   padding 0
   display grid
   grid-template-columns repeat(2, 1fr)
-  grid-template-rows repeat(7, 1fr)
+  grid-template-rows repeat(auto, 1fr)
   border-radius 10px
   box-shadow 0 4px 6px rgba(0 0 0 0.4)
   background White
   overflow hidden
   z-index 20
-  .filterWindow__item--container
-    width fit-content
-    display flex
-    justify-content flex-start
-    align-items center
-    margin-left 15px
-    cursor pointer
-    .filterWindow__item--emoji
-      width 20px
-      height 20px
-      margin-right 5px
-    .filterWindow__item--text
-      font-size text-size
+
+.filterWindow__item--container
+  display flex
+  justify-content flex-start
+  align-items center
+  margin 7px 15px
+  background transparent
+  border none
+  outline none
+  font-family inherit
+  font-size text-size
+  color Elegant-black
+  cursor pointer
+
+.filterWindow__item--emoji
+  width 20px
+  height 20px
+  margin-right 5px
+
+.filterWindow__item--text
+  font-size text-size
 
 .filterWindow__container.openFilter
-  height 280px
-  padding-top 10px
+  overflow-y auto
+  height 225px
+  padding 10px 0

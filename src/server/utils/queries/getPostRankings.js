@@ -11,6 +11,6 @@ export default async function getPostRankings(url) {
 
     return postRankings;
   } catch (err) {
-    return {};
+    return [];
   };
 };

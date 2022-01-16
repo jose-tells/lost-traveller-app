@@ -5,7 +5,7 @@ export default async function getRootUser(username, email, id, token) {
   try {
     const userData = await axios.get(`${apiUrl}/api/users/${token ? username : ''}`);
 
-    const { firstName, verified, profilePhoto } = userData.data.data;
+    const { firstName, verified, profilePhoto, isAdmin } = userData.data.data;
 
     return {
       id,
@@ -14,6 +14,7 @@ export default async function getRootUser(username, email, id, token) {
       email,
       verified,
       profilePhoto,
+      isAdmin,
     };
   } catch (err) {
     return {};

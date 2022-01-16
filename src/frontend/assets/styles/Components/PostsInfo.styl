@@ -52,9 +52,15 @@
   align-self flex-end
   justify-self flex-end
   color White
-  .postInfo__contributors--profiles
-    display flex
-  .postInfo__contributors--names
-    text-align right
-    font-size footer-text-size + 0.1
-    font-weight 300
+
+.postInfo__contributors--profiles
+  display flex
+  overflow hidden
+
+.postInfo__contributors--names
+  text-align right
+  font-size footer-text-size
+  font-weight 300
+
+.postInfo__contributors--user
+  font-weight 500

@@ -25,7 +25,7 @@ const store = createStore(reducer, preloadedState, composeEnhancers(applyMiddlew
 ReactDOM.hydrate(
   <Provider store={store}>
     <Router history={history}>
-      <App isLogged={Boolean(preloadedState.user.id)} />
+      <App isLogged={!!(preloadedState.user.id)} isAdmin={!!preloadedState.user.isAdmin} />
     </Router>
   </Provider>,
   document.getElementById('app'),

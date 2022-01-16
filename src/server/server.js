@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable global-require */
 import express from 'express';
@@ -8,7 +7,6 @@ import passport from 'passport';
 // Boom
 import boom from '@hapi/boom';
 // Cookie-parser
-// eslint-disable-next-line import/no-unresolved
 import cookieParser from 'cookie-parser';
 // Axios
 import axios from 'axios';
@@ -17,30 +15,36 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { renderRoutes } from 'react-router-config';
 import { StaticRouter } from 'react-router-dom';
+// Middleware: Helmet
+import helmet from 'helmet';
+import { dom } from '@fortawesome/fontawesome-svg-core';
 // Redux
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { dom } from '@fortawesome/fontawesome-svg-core';
-import helmet from 'helmet';
-import { env, port, apiUrl, dev, cssInline, jsInline } from './config/index';
 import reducer from '../frontend/reducers/index';
+// React-router
 import serverRoutes from '../frontend/routes/serverRoutes';
+// Manifest.json
 import getManifest from './getManifest';
 // Utils-queries
 import getUserData from './utils/queries/userData';
 import getRankings from './utils/queries/getRankings';
+import getPostRankings from './utils/queries/getPostRankings';
 import getPosts from './utils/queries/getPosts';
 import getRootUser from './utils/queries/getRootUser';
 import listPostComments from './utils/queries/listPostComments';
+// Env vars
+import { env, port, apiUrl, dev, cssInline, jsInline } from './config';
 
 const ONE_MONTH_IN_MILLISECONDS = 2629800000;
 const TWO_HOURS_IN_MILLISECONDS = 7200000;
 
 // Basic Strategy
-require('./utlis/auth/strategies/basic');
+require('./utils/auth/strategies/basic');
 
 const app = express();
 
+// Parsers
 app.use(express.json());
 app.use(cookieParser());
 
@@ -78,6 +82,7 @@ const setResponse = (html, preloadedState, manifest) => {
   const mainStyle = manifest ? manifest['main.css'] : 'assets/app.css';
   const mainBuild = manifest ? manifest['main.js'] : 'assets/app.js';
   const vendorBuild = manifest ? manifest['vendors.js'] : 'assets/vendor.js';
+
   return (`
   <!DOCTYPE html>
     <html lang='en'>
@@ -140,10 +145,11 @@ const renderApp = async (req, res) => {
   const store = createStore(reducer, initialState);
   const preloadedState = store.getState();
   const isLogged = initialState.user.id;
+  const idAdmin = initialState.user.isAdmin;
   const html = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.url} context={{}}>
-        {renderRoutes(serverRoutes(Boolean(isLogged)))}
+        {renderRoutes(serverRoutes(Boolean(isLogged, idAdmin)))}
       </StaticRouter>
     </Provider>,
   );
@@ -233,10 +239,13 @@ app.get('/posts/:postId', async (req, res, next) => {
 
     postData = postData.data.data;
 
+    const postRankings = await getPostRankings(`${apiUrl}/api/posts-rankings?postId=${postData._id}`);
+
     const postComments = await listPostComments(`${apiUrl}/api/comments?postId=${postData._id}`);
 
     const post = {
       ...postData,
+      rankings: postRankings,
       comments: postComments,
     };
 

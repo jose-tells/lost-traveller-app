@@ -4,14 +4,11 @@ import { Link } from 'react-router-dom';
 // Classnames
 import classNames from 'classnames';
 // Media
-import defaultUser from '../assets/Svg/abstract-user-flat-4.svg';
+import defaultUser from '../assets/svg/abstract-user-flat-4.svg';
 
 const UserPhoto = (props) => {
 
   const {
-    firstPhoto,
-    secondPhoto,
-    thirdPhoto,
     profilePhoto,
     username,
     isComment,
@@ -20,9 +17,6 @@ const UserPhoto = (props) => {
   } = props;
 
   const profileImageStyles = classNames('postInfo__creator--photoContainer', {
-    firstPhoto,
-    secondPhoto,
-    thirdPhoto,
     isComment,
     isProfile,
     isVerified,

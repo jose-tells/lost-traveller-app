@@ -4,11 +4,12 @@
   grid-template-columns repeat(16, 1fr)
   grid-template-rows repeat(16, 1fr)
   overflow hidden
-  .homePresentation__wallpaper
-    height 150%
-    justify-self center
-    grid-column 1/17
-    grid-row 1/17
+
+.homePresentation__wallpaper
+  height 150%
+  justify-self center
+  grid-column 1/17
+  grid-row 1/17
 
 .homePresentation__signInContainer
     // Flexing
@@ -21,15 +22,18 @@
     align-self flex-start
     justify-self center
     outline none
-    width 100px
+    width auto
     height 29px
-    background transparent
-    border 1px solid Button-blue
-    border-radius 20px
-    .homePresentation__singInBtn
-      text-decoration none
-      font-family Main-font
-      font-weight 300
-      font-size text-size
-      text-align center
-      color White
+    background Letter-orange
+    border none
+    box-shadow 0 0 5px Letter-orange
+    border-radius 10px
+    padding 5px 20px
+
+.homePresentation__singInBtn
+  text-decoration none
+  font-family Main-font
+  font-weight 300
+  font-size text-size
+  text-align center
+  color White

@@ -1,15 +1,12 @@
 import React, { useRef, useState } from 'react';
 // React-router-dom
 import { Link } from 'react-router-dom';
-// React-redux
-import { connect } from 'react-redux';
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 // Components
 import UserCommentLayout from './UserCommentLayout';
 import UserPhoto from './UserPhoto';
-import { createPostComment } from '../actions';
 
 const ForumSection = (props) => {
   const { postId, postComments, user, createPostComment } = props;
@@ -70,8 +67,8 @@ const ForumSection = (props) => {
         </div>
       ) : (
         <section className='commentsSection__noLogged'>
-          <h2 className='commentsSection__noLogged--text'>Se el primero en decir que ta priti!</h2>
-          <Link className='commentsSection__noLogged--link' to='/signIn'>Inicia Sesión!</Link>
+          <h2 className='commentsSection__noLogged--text'>Be the first to say, awesome place!</h2>
+          <Link className='commentsSection__noLogged--link' to='/signIn'>Log In!</Link>
         </section>
       )}
       <section className='userComments__container'>
@@ -97,8 +94,4 @@ const ForumSection = (props) => {
   );
 };
 
-const mapDispatchToProps = {
-  createPostComment,
-};
-
-export default connect(null, mapDispatchToProps)(ForumSection);
+export default ForumSection;

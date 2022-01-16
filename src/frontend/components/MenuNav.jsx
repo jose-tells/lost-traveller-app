@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // Classnames
@@ -9,7 +8,7 @@ import { useScroll } from '@use-gesture/react';
 import HamburgerMenu from './HamburgerMenu';
 import SlideMenuBar from './SlideMenuBar';
 // Images
-import travelLogo from '../assets/Svg/logo-travel-Wihte.svg';
+import travelLogo from '../assets/svg/logo-travel-Wihte.svg';
 
 const MenuNav = () => {
 
@@ -31,7 +30,11 @@ const MenuNav = () => {
       <nav className={menuNavScrolledStyles}>
         <div className='menuNav__navigationBar--container'>
           <Link to='/' className='menuNav__logo--container'>
-            <img src={travelLogo} className='menuNav__logo' alt='The Lost Traveller Logo' />
+            <img
+              src={travelLogo}
+              className='menuNav__logo'
+              alt='The Lost Traveller Logo'
+            />
           </Link>
           <HamburgerMenu
             isOpen={isOpen}

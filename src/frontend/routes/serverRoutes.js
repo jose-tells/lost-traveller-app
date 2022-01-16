@@ -3,11 +3,10 @@ import Posts from '../containers/Posts';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
 import UserProfile from '../containers/UserProfile';
-import UserProfileRequest from '../containers/UserProfileRequest';
 import UploadPosts from '../containers/UploadPosts';
 import NotFound from '../containers/NotFound';
 
-const routes = (isLogged) => [
+const routes = (isLogged, isAdmin) => [
   {
     exact: true,
     path: '/',
@@ -30,18 +29,13 @@ const routes = (isLogged) => [
   },
   {
     exact: true,
-    path: '/profile',
+    path: '/profile/:username',
     component: UserProfile,
   },
   {
     exact: true,
-    path: '/user/:userId',
-    component: UserProfileRequest,
-  },
-  {
-    exact: true,
     path: '/upload',
-    component: isLogged ? UploadPosts : Home,
+    component: (isLogged && isAdmin) ? UploadPosts : Home,
   },
   {
     name: 'NotFound',

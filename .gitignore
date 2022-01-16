@@ -170,6 +170,9 @@ dist
 # Serverless Webpack directories
 .webpack/
 
+# Server side render webpack output
+src/server/public
+
 ### react ###
 .DS_*
 **/*.backup.*
