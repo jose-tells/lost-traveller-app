@@ -71,16 +71,16 @@
     "mini-css-extract-plugin": "^2.4.3",
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
-    "@babel/preset-react": "^7.16.0"
+    "@babel/preset-react": "^7.16.0",
+    "css-loader": "^6.5.0",
+    "stylus-loader": "^6.2.0",
+    "file-loader": "^5.1.0",
+    "babel-loader": "^8.2.3"
   },
   "devDependencies": {
-    "babel-loader": "^8.2.3",
-    "clean-webpack-plugin": "^4.0.0",
     "compression-webpack-plugin": "^9.0.1",
-    "css-loader": "^6.5.0",
-    "file-loader": "^5.1.0",
+    "clean-webpack-plugin": "^4.0.0",
     "react-hot-loader": "^4.13.0",
-    "stylus-loader": "^6.2.0",
     "terser-webpack-plugin": "^5.2.5",
     "webpack-dev-middleware": "^5.2.1",
     "webpack-hot-middleware": "^2.25.1"
