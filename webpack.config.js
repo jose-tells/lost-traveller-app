@@ -47,6 +47,9 @@ module.exports = {
       },
     },
   },
+  stats: {
+    errorDetails: true,
+  },
   module: {
     rules: [
       {
