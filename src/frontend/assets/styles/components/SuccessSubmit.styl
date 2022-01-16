@@ -1,0 +1,43 @@
+hide = hide-success
+
+@keyframes hide {
+  0% {
+    opacity 1
+  }
+  25% {
+    opacity 1
+  }
+  100% {
+    opacity 0
+  }
+}
+
+.SuccessSubmit__container
+  width 100vw
+  height 100vh
+  display flex
+  justify-content center
+  align-items flex-start
+  position fixed
+  z-index 100
+  background rgba(0 0 0 0.5)
+  animation-name hide
+  animation-duration 3s
+.SuccessSubmit__message--container
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  gap 15px
+  width 100%
+  height 127px
+  background Elegant-black
+  .SuccessSubmit__message--icon
+    margin-top -10px
+    font-size 42px
+    color Button-blue
+    transform rotate(20deg)
+  .SuccessSubmit__message--title
+    font-size text-size
+    font-weight 300
+    color White

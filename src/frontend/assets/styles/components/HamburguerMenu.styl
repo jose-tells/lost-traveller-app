@@ -1,0 +1,58 @@
+.hamburger__container
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  width 50px
+  height 50px
+  border none
+  background none
+  outline none
+  color White
+  cursor pointer
+
+.hamburger__item
+  width 20px
+  height 2px
+  background White
+  border-radius 10px
+  transition 0.5s ease-in
+
+.hamburger__item::before
+.hamburger__item::after
+  content ''
+  position absolute
+  width 20px
+  height 2px
+  background inherit
+  border-radius 10px
+  transition 0.5s ease-in
+
+.hamburger__item::before
+  transform translate(-50%, -8px)
+
+.hamburger__item::after
+  transform translate(-50%, 8px)
+
+// When Open
+
+.hamburger__item.isOpen
+  background transparent
+
+.hamburger__item.isOpen::before
+  background Elegant-black
+  transform rotate(-45deg) translate(-8px, -8px)
+
+.hamburger__item.isOpen::after
+  background Elegant-black
+  transform rotate(45deg) translate(-8px, 8px)
+
+  // When Scrolled
+
+.hamburger__item.isScrolled
+  background Elegant-black
+
+// When open and scrolled
+
+.hamburger__item.isOpen.isScrolled
+  background transparent

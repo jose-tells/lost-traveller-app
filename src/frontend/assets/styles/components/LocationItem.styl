@@ -1,0 +1,47 @@
+.location__item--container
+  display grid
+  grid-template-columns 1fr
+  grid-template-rows repeat(4, 1fr)
+  align-items center
+  justify-content center
+  height 80px
+  border-radius 10px
+  color White
+  overflow hidden
+  text-decoration none
+  .location__item--img
+    width 100%
+    grid-column 1
+    grid-row 1/5
+    opacity .9
+    filter brightness(.9)
+    z-index -10
+
+.location__item--dataContainer
+  grid-column 1
+  grid-row 2/5
+  width 96%
+  margin-bottom 10px
+  display flex
+  flex-direction column
+  justify-self center
+  align-self flex-end
+  .location__item--title
+    font-weight 500
+    font-size sub-title-size
+
+.location__item--detailsContainer
+  display flex
+  align-items flex-end
+  justify-content space-between
+  .location__item--province
+    font-weight 300
+    font-size mini-text-size
+  .location__item--reviews
+    font-weight 200
+    font-size 1.1rem
+
+
+
+
+
